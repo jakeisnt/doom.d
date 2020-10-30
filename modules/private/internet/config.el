@@ -36,13 +36,12 @@
 
 (define-key evil-normal-state-map (kbd "SPC a") 'link-hint-open-link)
 
-(defun skira-setup ()
-    "Open everything I need to be productive at Skira."
-    (browse-url "https://app.slack.com/client/T0R0C5VFV")
-    (browse-url "https://mail.google.com/mail/u/2/#inbox")
-    (browse-url "https://calendar.google.com/calendar/b/2/r?tab=mc")
-    (browse-url "https://github.com/plantaseed")
-    (browse-url "https://app.asana.com/0/inbox/1189245019163511"))
+(defun visit-localhost ()
+  "Visit a specified localhost port."
+  (interactive)
+  (browse-url
+   (concat "localhost:" (read-string "Visit port:"))))
+
   ;; Find a URL
   (map! :leader
         "\"" (lambda ()
@@ -56,9 +55,11 @@
    :desc "Visit Calendar" "c" (lambda () (interactive) (browse-url "https://calendar.google.com"))
    :desc "Visit Discord" "d" (lambda () (interactive) (browse-url "https://discord.gg"))
    :desc "Visit Spotify" "s" (lambda () (interactive) (browse-url "https://open.spotify.com"))
-   :desc "Visit Skira" "S" #'skira-setup
    :desc "Visit Gmail" "m" (lambda () (interactive) (browse-url "https://gmail.com"))
-   :desc "Visit GitHub" "g" (lambda () (interactive) (browse-url "https://github.com/jakechv")))
+   :desc "Visit GitHub" "g" (lambda () (interactive) (browse-url "https://github.com/jakechv"))
+   :desc "Visit local port" "l" 'visit-localhost
+   )
+
 ;; (use-package! elfeed
 ;;   :init
 ;;   (setq elfeed-protocol-ttrss-maxsize 200 elfeed-set-timeout 36000
