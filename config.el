@@ -22,7 +22,8 @@
 
 ;;; Code:
 (setq user-full-name "Jacob Chvatal"
-      user-mail-address "jakechvatal@gmail.com")
+      user-mail-address "jakechvatal@gmail.com"
+      doom-theme 'doom-dracula)
 
 (setq-default delete-by-moving-to-trash t
               tab-width 4
@@ -46,8 +47,6 @@
 
 (setq projectile-globally-ignored-directories '("node_modules" ".happypack" "flow-typed" "build" "lib")
       grep-find-ignored-directories '("node_modules" ".happypack"))
-
-(setq doom-theme 'doom-nord)
 
 ;; always split window to bottom right
 (setq evil-vsplit-window-right t
