@@ -15,6 +15,7 @@
 ;;; Commentary:
 ;;
 ;;
+;;TODO copy some things from doom emacs private
 ;;
 ;;; Code:
 
@@ -37,7 +38,7 @@
       evil-want-fine-undo t
       auth-source-cache-expiry nil
       inhibit-compacting-font-caches t
-      display-line-numbers-type 'relative
+      ;; display-line-numbers-type 'relative
       select-enable-clipboard t
       interprogram-paste-function 'x-cut-buffer-or-selection-value
       gc-cons-threshold 100000000
@@ -100,7 +101,7 @@
 
 (use-package! company
   :config
-  (setq company-idle-delay 0.5
+  (setq company-idle-delay nil ;; 0.5
         company-minimum-prefix-length 2
         company-show-numbers t)
   (add-hook 'evil-normal-state-entry-hook #'company-abort))
@@ -119,49 +120,6 @@
 ;;    TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
 ;;    TeX-source-correlate-start-server t) ;; not sure if last line is neccessary
 ;; to have the buffer refresh after compilation
-
-;; Visit a commonly used URL.
-;; TODO: Add hook to browse-url to show a list of
-;; frequently used websites to visit in a minibuffer;
-;; determine these based on previous uses of browse-url
-;; or from browser history somehow.
-(use-package! browse-url
-  :init
-  (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "firefox"))
-
-(use-package! link-hint
-  :ensure t
-  :defer t)
-
-(define-key evil-normal-state-map (kbd "SPC a") 'link-hint-open-link)
-
-(defun skira-setup ()
-  "Open everything I need to be productive at Skira."
-  (interactive)
-  (browse-url "https://app.slack.com/client/T0R0C5VFV")
-  (browse-url "https://mail.google.com/mail/u/2/#inbox")
-  (browse-url "https://calendar.google.com/calendar/b/2/r?tab=mc")
-  (browse-url "https://github.com/plantaseed")
-  (browse-url "https://app.asana.com/0/inbox/1189245019163511"))
-
-;; Find a URL
-(map! :leader
-      "\"" (lambda ()
-             (interactive)
-             (browse-url (read-string "URL:"))))
-(map! :leader
-      "'" (lambda () (interactive) (counsel-search)))
-(map!
- :leader
- :prefix "v"
- :desc "Visit Calendar" "c" (lambda () (interactive) (browse-url "https://calendar.google.com"))
- :desc "Visit Discord" "d" (lambda () (interactive) (browse-url "https://discord.gg"))
- :desc "Visit Spotify" "s" (lambda () (interactive) (browse-url "https://open.spotify.com"))
- :desc "Visit Skira" "S" #'skira-setup
- :desc "Visit Gmail" "m" (lambda () (interactive) (browse-url "https://gmail.com"))
- :desc "Visit GitHub" "g" (lambda () (interactive) (browse-url "https://github.com/jakechv")))
-
 
 ;;; automatic #bang
 (add-hook 'after-save-hook
@@ -187,7 +145,6 @@
 
 
 (defun doom-dashboard-widget-banner ()
-  (let ((point (point)))
     (mapc (lambda (line)
             (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
                                 'face 'doom-dashboard-banner) " ")
@@ -215,10 +172,7 @@
 
                                     E M A C S
 
-"))))
-
-;; (setq doom-dashboard-functions
-;;       (cons doom-dashboard-widget-banner (cdr doom-dashboard-functions)))
+")))
 
 (use-package! ranger)
 
@@ -234,6 +188,13 @@
 (defun ido-kill-emacs-hook ()
   ;; Quit emacs despite the ido.last buffer being written to.
   (ignore-errors (ido-save-history)))
+
+(use-package! atomic-chrome
+  :after-call focus-out-hook
+  :config
+  (setq atomic-chrome-default-major-mode 'markdown-mode
+        atomic-chrome-buffer-open-style 'frame)
+  (atomic-chrome-start-server))
 
 (provide 'config)
 ;;; config.el ends here

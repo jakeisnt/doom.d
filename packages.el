@@ -59,6 +59,7 @@
 ;; (package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")))
 (package! ranger :pin "caf75f0060e503af078c7e5bb50d9aaa508e6f3e")
 (package! elpher :pin "cc19cc4d1c174ed568625d2f34cf25914184d1f2")
+(package! atomic-chrome)
 
 (provide 'packages)
 ;;; packages.el ends here

@@ -34,8 +34,7 @@
     (setq org-projectile-projects-file
           "TODO.org")
     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-    (push (org-projectile-project-todo-entry) org-capture-templates))
-  :ensure t)
+    (push (org-projectile-project-todo-entry) org-capture-templates)))
 (setq org-log-done 'time
       org-log-into-drawer t
       org-log-state-notes-insert-after-drawers nil)

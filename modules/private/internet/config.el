@@ -30,10 +30,6 @@
   (setq browse-url-browser-function 'browse-url-generic
         browse-url-generic-program "firefox"))
 
-(use-package! link-hint
-  :ensure t
-  :defer t)
-
 (define-key evil-normal-state-map (kbd "SPC a") 'link-hint-open-link)
 
 (defun visit-localhost ()

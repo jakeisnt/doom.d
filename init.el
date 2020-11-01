@@ -15,9 +15,9 @@
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       hydra
+       ;;hydra
        ;;indent-guides     ; highlighted indent columns
-       modeline          ; snazzy, Atom-inspired modeline, plus API
+       (modeline +light)   ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
@@ -49,13 +49,13 @@
        dired             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
        ;;ibuffer         ; interactive buffer management
-       undo              ; persistent, smarter undo for your inevitable mistakes
+       (undo +tree)              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
        ;; (undo +tree)
 
        :term
-       ;;eshell            ; the elisp shell that works everywhere
-       shell             ; simple shell REPL for Emacs
+       eshell            ; the elisp shell that works everywhere
+       ;;shell             ; simple shell REPL for Emacs
        ;; term              ; basic terminal emulator for Emacs
        ;; vterm             ; the best terminal emulation in Emacs
 
@@ -76,12 +76,11 @@
        lsp
        ;;macos             ; MacOS-specific commands
        magit
-        ;;+forge)       ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        pass                ; password manager for nerds
        pdf                 ; pdf enhancements
        ;;prodigy           ; managing external services & code builders
-       rgb               ; creating color strings
+       ;;rgb               ; creating color strings
        ;; taskrunner        ; taskrunner for all your projects
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
@@ -143,7 +142,7 @@
 
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
-       purescript        ; javascript, but functional
+       ;; purescript        ; javascript, but functional
        ;; python        ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        racket            ; a DSL for DSLs
