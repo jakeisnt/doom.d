@@ -32,38 +32,38 @@
 ;; then all workspaces will be redirected to the 'default' output.
 (defun my-exwm-xrandr-config (default other)
   (setq exwm-randr-workspace-output-plist
-	(progn
-	  (setq result (list 0 default))
-	  (setq index 1)
-	  (while (< index exwm-workspace-number)
-	    (setq result (append result (list index other)))
-	    (setq index (1+ index)))
-	  result)))
+        (progn
+          (setq result (list 0 default))
+          (setq index 1)
+          (while (< index exwm-workspace-number)
+            (setq result (append result (list index other)))
+            (setq index (1+ index)))
+          result)))
 
 
 ;; Dynamically find the active xrandr outputs and update exwm
 ;; workspace configuration and enable xrandr outputs appropriately.
 (defun my-exwm-xrandr-hook (default)
   (let* ((connected-cmd "xrandr -q|awk '/ connected/ {print $1}'")
-	 (connected (process-lines "bash" "-lc" connected-cmd))
-	 (previous (delete-dups (seq-remove
-				 'integerp
-				 exwm-randr-workspace-monitor-plist))))
+         (connected (process-lines "bash" "-lc" connected-cmd))
+         (previous (delete-dups (seq-remove
+                                 'integerp
+                                 exwm-randr-workspace-monitor-plist))))
     (cond ((member "DP-1" connected)
-	   (progn (my-exwm-xrandr-config default "DP-1")
-		  (my-exwm-xrandr-two-outputs default "DP-1")))
-	  ((member "DP-2" connected)
-	   (progn (my-exwm-xrandr-config default "DP-2")
-		  (my-exwm-xrandr-two-outputs default "DP-2")))
-	  ((member "HDMI-1" connected)
-	   (progn (my-exwm-xrandr-config default "HDMI-1")
-		  (my-exwm-xrandr-two-outputs default "HDMI-1")))
-	  ((member "HDMI-2" connected)
-	   (progn (my-exwm-xrandr-config default "HDMI-2")
-		  (my-exwm-xrandr-two-outputs default "HDMI-2")))
-	  (t (progn (my-exwm-xrandr-config default default)
-		    (mapcar 'my-exwm-xrandr-off
-			    (delete default previous)))))))
+           (progn (my-exwm-xrandr-config default "DP-1")
+                  (my-exwm-xrandr-two-outputs default "DP-1")))
+          ((member "DP-2" connected)
+           (progn (my-exwm-xrandr-config default "DP-2")
+                  (my-exwm-xrandr-two-outputs default "DP-2")))
+          ((member "HDMI-1" connected)
+           (progn (my-exwm-xrandr-config default "HDMI-1")
+                  (my-exwm-xrandr-two-outputs default "HDMI-1")))
+          ((member "HDMI-2" connected)
+           (progn (my-exwm-xrandr-config default "HDMI-2")
+                  (my-exwm-xrandr-two-outputs default "HDMI-2")))
+          (t (progn (my-exwm-xrandr-config default default)
+                    (mapcar 'my-exwm-xrandr-off
+                            (delete default previous)))))))
 
 (defun exwm-change-screen-hook ()
   "Opens EXWM on additional monitors as they're plugged in."
@@ -122,39 +122,10 @@
 (add-hook 'exwm-randr-screen-change-hook 'exwm-change-screen-hook)
 (exwm-randr-enable)
 
-(defun jethro/exwm-rename-buffer-to-title ()
-  "Rename Firefox buffers to include their window titles."
-  (exwm-workspace-rename-buffer (format "%s - %s" exwm-class-name exwm-title)))
-(add-hook 'exwm-update-title-hook 'jethro/exwm-rename-buffer-to-title)
-(add-hook 'exwm-update-class-hook
-          (defun my-exwm-update-class-hook ()
-            (unless (or (string-prefix-p "sun-awt-X11-" exwm-instance-name)
-                        (string= "gimp" exwm-instance-name)
-                        (string= "Firefox" exwm-class-name))
-              (exwm-workspace-rename-buffer exwm-class-name))))
-(add-hook 'exwm-update-title-hook
-          (defun my-exwm-update-title-hook ()
-            (cond ((or (not exwm-instance-name)
-                       (string-prefix-p "sun-awt-X11-" exwm-instance-name)
-                       (string= "gimp" exwm-instance-name)
-                       (string= "Firefox" exwm-class-name))
-                   (exwm-workspace-rename-buffer exwm-title)))))
-
-;; better firefox experience in exwm
-(use-package! exwm-firefox-evil
-  :config (add-hook 'exwm-manage-finish-hook 'exwm-firefox-evil-activate-if-firefox))
 
 ;; add something to firefox
 (dolist (k `(escape))
   (cl-pushnew k exwm-input-prefix-keys))
-
-(add-hook 'exwm-update-title-hook
-          (defun pnh-exwm-title-hook ()
-            (when (string-match "Firefox" exwm-class-name)
-              (exwm-workspace-rename-buffer exwm-title))))
-
-(setq browse-url-new-window-flag t
-      browse-url-firefox-new-window-is-tab t)
 
 
 ;; jump to buffers with s-hjkl
@@ -196,7 +167,6 @@
 (defun j/source-is-muted ()
   "Is the audio currently muted?"
   (string= (car (cdr (j/audio-status))) "yes"))
-
 
 (defun j/sink-is-muted ()
   "Is the audio currently muted?"
