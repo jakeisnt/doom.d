@@ -35,16 +35,25 @@
               prescient-history-length 100)
 
 (setq undo-limit 80000000
+      gc-cons-threshold 100000000
       evil-want-fine-undo t
       auth-source-cache-expiry nil
       inhibit-compacting-font-caches t
-      ;; display-line-numbers-type 'relative
+      display-line-numbers-type 'relative
       select-enable-clipboard t
       interprogram-paste-function 'x-cut-buffer-or-selection-value
-      gc-cons-threshold 100000000
       read-process-output-max (* 1024 1024)
       lsp-completion-provider :capf
-      lsp-idle-delay 0.500)
+      lsp-idle-delay 0.500
+
+      ;; lsp-ui conflicts with eldoc; disable it
+      lsp-ui-sideline-enable nil
+      lsp-enable-symbol-highlighting nil
+
+      evil-ex-substitute-global t)
+
+(setq doom-font (font-spec :family "monospace" :size 24 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 24))
 
 (setq projectile-globally-ignored-directories '("node_modules" ".happypack" "flow-typed" "build" "lib")
       grep-find-ignored-directories '("node_modules" ".happypack"))
@@ -174,9 +183,10 @@
 
 ")))
 
-(use-package! ranger)
+(use-package! ranger
+  :init
+  (ranger-override-dired-mode t))
 
-(ranger-override-dired-mode t)
 (setq
   ranger-cleanup-on-disable t
   ranger-modify-header t
@@ -195,6 +205,53 @@
   (setq atomic-chrome-default-major-mode 'markdown-mode
         atomic-chrome-buffer-open-style 'frame)
   (atomic-chrome-start-server))
+
+(map! :n [tab] (cmds! (and (featurep! :editor fold)
+                           (save-excursion (end-of-line) (invisible-p (point))))
+                      #'+fold/toggle
+                      (fboundp 'evil-jump-item)
+                      #'evil-jump-item)
+      :v [tab] (cmds! (and (bound-and-true-p yas-minor-mode)
+                           (or (eq evil-visual-selection 'line)
+                               (not (memq (char-after) (list ?\( ?\[ ?\{ ?\} ?\] ?\))))))
+                      #'yas-insert-snippet
+                      (fboundp 'evil-jump-item)
+                      #'evil-jump-item)
+
+      :leader
+      "h L" #'global-keycast-mode
+      "f t" #'find-in-dotfiles
+      "f T" #'browse-dotfiles)
+
+(use-package! browse-url
+  :init
+  (setq browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program "firefox"))
+
+(define-key evil-normal-state-map (kbd "SPC a") 'link-hint-open-link)
+
+(defun visit-localhost ()
+  "Visit a specified localhost port."
+  (interactive)
+  (browse-url
+   (concat "localhost:" (read-string "Visit port:"))))
+
+  ;; Find a URL
+  (map! :leader
+        "\"" (lambda ()
+               (interactive)
+               (browse-url (read-string "URL:"))))
+  (map! :leader
+        "'" (lambda () (interactive) (counsel-search)))
+  (map!
+   :leader
+   :prefix "v"
+   :desc "Visit Calendar" "c" (lambda () (interactive) (browse-url "https://calendar.google.com"))
+   :desc "Visit Discord" "d" (lambda () (interactive) (browse-url "https://discord.gg"))
+   :desc "Visit Spotify" "s" (lambda () (interactive) (browse-url "https://open.spotify.com"))
+   :desc "Visit Gmail" "m" (lambda () (interactive) (browse-url "https://gmail.com"))
+   :desc "Visit GitHub" "g" (lambda () (interactive) (browse-url "https://github.com/jakechv"))
+   :desc "Visit local port" "l" 'visit-localhost)
 
 (provide 'config)
 ;;; config.el ends here

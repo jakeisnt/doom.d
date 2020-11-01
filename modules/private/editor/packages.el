@@ -20,7 +20,6 @@
 ;;; Code:
 
 (package! add-node-modules-path :pin "f31e69ccb681f882aebb806ce6e9478e3ac39708")
-(package! lsp-ui :pin "b1693d610c4d2c44305eba2719e8d4097fdcdcb8")
 (package! lsp-python-ms :pin "c4ebc7a11398733055a1dc07f9cffacd04d1c2dc")
 
 (provide 'packages)

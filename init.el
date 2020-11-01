@@ -5,76 +5,75 @@
        ;; exwm
 
        :completion
-       company           ; the ultimate code completion backend
-       ivy               ; a search engine for love and life
-       ;;helm            ; the *other* search engine for love and life
-       ;;ido             ; the other *other* search engine...
+       (company +childframe)
+       ivy
+       ;;helm
+       ;;ido
 
        :ui
-       deft              ; notational velocity for Emacs
-       doom              ; what makes DOOM look the way it does
-       doom-dashboard    ; a nifty splash screen for Emacs
-       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       ;;hydra
-       ;;indent-guides     ; highlighted indent columns
-       (modeline +light)   ; snazzy, Atom-inspired modeline, plus API
-       ;;nav-flash         ; blink cursor line after big motions
-       ;;neotree           ; a project drawer, like NERDTree for vim
-       ophints           ; highlight the region an operation acts on
-       (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       ;;pretty-code       ; ligatures or substitute text with pretty symbols
-       ;;tabs              ; a tab bar for Emacs
-       ;;treemacs          ; a project drawer, like neotree but cooler
-       ;;unicode           ; extended unicode support for various languages
-       vc-gutter           ; vcs diff in the fringe
-       ;;window-select     ; visually switch windows
-       ;;workspaces        ; tab emulation, persistence & separate workspaces
-       ;;zen               ; distraction-free coding or writing
+       deft
+       doom
+       doom-dashboard
+       hl-todo
+       
+       ;;indent-guides
+       (modeline +light)
+
+       ;;neotree
+       ;;ophints
+       (popup +defaults)
+       ;;pretty-code
+       ;;tabs
+       ;;treemacs
+       ;;unicode
+       vc-gutter
+       ;;window-select
+       ;;workspaces
+       ;;zen
 
        :editor
-       (evil +everywhere); come to the dark side, we have cookies
-       file-templates    ; auto-snippets for empty files
-       fold              ; (nigh) universal code folding
-       (format +onsave)  ; automated prettiness
-       ;;god               ; run Emacs commands without modifier keys
-       ;;lispy             ; vim for lisp, for people who don't like vim
-       ;;multiple-cursors  ; editing in many places at once
-       ;;objed             ; text object editing for the innocent
-       ;;parinfer          ; turn lisp into python, sort of
-       ;;rotate-text       ; cycle region at point between text candidates
-       snippets          ; my elves. They type so I don't have to
-       word-wrap         ; soft wrapping with language-aware indent
+       (evil +everywhere)
+       file-templates
+       fold
+       (format +onsave)
+       ;;god
+       ;;lispy
+       multiple-cursors
+       ;;objed
+       ;;parinfer
+       rotate-text
+       snippets
+       word-wrap
 
        :emacs
-       dired             ; making dired pretty [functional]
-       electric          ; smarter, keyword-based electric-indent
-       ;;ibuffer         ; interactive buffer management
-       (undo +tree)              ; persistent, smarter undo for your inevitable mistakes
-       vc                ; version-control and Emacs, sitting in a tree
-       ;; (undo +tree)
+       dired
+       electric
+       ;;ibuffer
+       (undo +tree)
+       vc
 
        :term
        eshell            ; the elisp shell that works everywhere
-       ;;shell             ; simple shell REPL for Emacs
-       ;; term              ; basic terminal emulator for Emacs
-       ;; vterm             ; the best terminal emulation in Emacs
+       ;;shell           ; simple shell REPL for Emacs
+       ;; term           ; basic terminal emulator for Emacs
+       ;; vterm          ; the best terminal emulation in Emacs
 
        :checkers
-       syntax              ; tasing you for every semicolon you forget
-       ;;spell             ; tasing you for misspelling mispelling
-       ;;grammar           ; tasing grammar mistake every you make
+       syntax
+       ;;spell
+       ;;grammar
 
        :tools
        ;;ansible
-       ;;debugger          ; stepping through code, to help you add bugs
-       direnv              ; environments everywhere!
+       ;;debugger
+       direnv
        ;;docker
-       ;;ein               ; tame Jupyter notebooks with emacs
-       (eval +overlay)     ; run code, run (also, repls)
+       ;;ein
+       (eval +overlay)
        ;;gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
        lsp
-       ;;macos             ; MacOS-specific commands
+       ;;macos
        magit
        ;;make              ; run make tasks from Emacs
        pass                ; password manager for nerds
@@ -85,6 +84,10 @@
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
+
+       :os
+       (:if IS-MAC macos)
+       ;;tty
 
        :lang
        ;; agda              ; types of types of types of types...
