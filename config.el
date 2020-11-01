@@ -35,7 +35,6 @@
               prescient-history-length 100)
 
 (setq undo-limit 80000000
-      gc-cons-threshold 100000000
       evil-want-fine-undo t
       auth-source-cache-expiry nil
       inhibit-compacting-font-caches t
