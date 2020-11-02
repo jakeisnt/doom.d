@@ -42,7 +42,7 @@
       select-enable-clipboard t
       interprogram-paste-function 'x-cut-buffer-or-selection-value
       read-process-output-max (* 1024 1024)
-      lsp-completion-provider :capf
+      ;; lsp-completion-provider :capf
       lsp-idle-delay 0.500
 
       ;; lsp-ui conflicts with eldoc; disable it
@@ -88,9 +88,6 @@
 
 ;; Prevents some cases of Emacs flickering
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
-
-;; (use-package! vlf-setup
-;;   :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 
 (use-package! abbrev
   :init
@@ -153,11 +150,11 @@
 
 
 (defun doom-dashboard-widget-banner ()
-    (mapc (lambda (line)
-            (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
-                                'face 'doom-dashboard-banner) " ")
-            (insert "\n"))
-          '("
+  (mapc (lambda (line)
+          (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
+                              'face 'doom-dashboard-banner) " ")
+          (insert "\n"))
+        '("
                               ::::.    ':::::     ::::'
                               ':::::    ':::::.  ::::'
                                 :::::     '::::.:::::
@@ -182,17 +179,6 @@
 
 ")))
 
-(use-package! ranger
-  :init
-  (ranger-override-dired-mode t))
-
-(setq
-  ranger-cleanup-on-disable t
-  ranger-modify-header t
-  ranger-hide-cursor t
-  ranger-preview-file t
-  ranger-max-preview-size 20
-  ranger-dont-show-binary t)
 
 (defun ido-kill-emacs-hook ()
   ;; Quit emacs despite the ido.last buffer being written to.
@@ -235,22 +221,22 @@
   (browse-url
    (concat "localhost:" (read-string "Visit port:"))))
 
-  ;; Find a URL
-  (map! :leader
-        "\"" (lambda ()
-               (interactive)
-               (browse-url (read-string "URL:"))))
-  (map! :leader
-        "'" (lambda () (interactive) (counsel-search)))
-  (map!
-   :leader
-   :prefix "v"
-   :desc "Visit Calendar" "c" (lambda () (interactive) (browse-url "https://calendar.google.com"))
-   :desc "Visit Discord" "d" (lambda () (interactive) (browse-url "https://discord.gg"))
-   :desc "Visit Spotify" "s" (lambda () (interactive) (browse-url "https://open.spotify.com"))
-   :desc "Visit Gmail" "m" (lambda () (interactive) (browse-url "https://gmail.com"))
-   :desc "Visit GitHub" "g" (lambda () (interactive) (browse-url "https://github.com/jakechv"))
-   :desc "Visit local port" "l" 'visit-localhost)
+;; Find a URL
+(map! :leader
+      "\"" (lambda ()
+             (interactive)
+             (browse-url (read-string "URL:"))))
+(map! :leader
+      "'" (lambda () (interactive) (counsel-search)))
+(map!
+ :leader
+ :prefix "v"
+ :desc "Visit Calendar" "c" (lambda () (interactive) (browse-url "https://calendar.google.com"))
+ :desc "Visit Discord" "d" (lambda () (interactive) (browse-url "https://discord.gg"))
+ :desc "Visit Spotify" "s" (lambda () (interactive) (browse-url "https://open.spotify.com"))
+ :desc "Visit Gmail" "m" (lambda () (interactive) (browse-url "https://gmail.com"))
+ :desc "Visit GitHub" "g" (lambda () (interactive) (browse-url "https://github.com/jakechv"))
+ :desc "Visit local port" "l" 'visit-localhost)
 
 (provide 'config)
 ;;; config.el ends here
