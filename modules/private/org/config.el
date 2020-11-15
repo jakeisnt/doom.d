@@ -8,6 +8,7 @@
       org-default-notes-file "~/wiki/refile.org"
       org-attach-id-dir "~/wiki/.attach/"
       org-roam-directory "~/wiki/pages/"
+      org-journal-dir "~/wiki/journals/"
       org-use-property-inheritance t ;; convenient
       org-log-done 'time ;; log the time you finish something
       org-list-allow-alphabetical t ;; allow alpha bullets
@@ -186,7 +187,6 @@
   :config
   (setq org-journal-date-prefix "#+TITLE: "
         org-journal-file-format "%Y-%m-%d.org"
-        org-journal-dir "~/org/wiki/journals/"
         org-journal-carryover-items nil)
   (defun org-journal-today ()
     (interactive)
