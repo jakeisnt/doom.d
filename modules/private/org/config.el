@@ -1,13 +1,13 @@
 
 (require 'find-lisp)
 
-(setq org-directory "~/org/"
-      j/org-agenda-directory "~/org/agenda/"
-      j/org-calendar-dir "~/org/calendar/"
+(setq org-directory "~/wiki/"
+      j/org-agenda-directory "~/wiki/"
+      j/org-calendar-dir "~/wiki/calendar/"
       org-agenda-files (find-lisp-find-files j/org-agenda-directory "\.org$")
-      org-default-notes-file "~/org/refile.org"
-      org-attach-id-dir "~/org/.attach/"
-      org-roam-directory "~/org/wiki/org/"
+      org-default-notes-file "~/wiki/refile.org"
+      org-attach-id-dir "~/wiki/.attach/"
+      org-roam-directory "~/wiki/pages/"
       org-use-property-inheritance t ;; convenient
       org-log-done 'time ;; log the time you finish something
       org-list-allow-alphabetical t ;; allow alpha bullets
@@ -186,7 +186,7 @@
   :config
   (setq org-journal-date-prefix "#+TITLE: "
         org-journal-file-format "%Y-%m-%d.org"
-        org-journal-dir "~/org/journal/"
+        org-journal-dir "~/org/wiki/journals/"
         org-journal-carryover-items nil)
   (defun org-journal-today ()
     (interactive)
@@ -194,7 +194,7 @@
 
 (use-package! bibtex-completion ;; autocompletion for notes templates
   :config
-  (setq bibtex-completion-notes-path "~/org/wiki/org/"
+  (setq bibtex-completion-notes-path "~/org/wiki/"
         bibtex-completion-bibliography "~/org/wiki/org/biblio.bib"
         bibtex-completion-pdf-field "file"
         bibtex-completion-notes-template-multiple-files
@@ -315,7 +315,7 @@
   (deft-use-filename-as-title t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory "~/org/wiki/org/"))
+  (deft-directory "~/org/wiki/"))
 
 (setq-default major-mode 'org-mode)
 
