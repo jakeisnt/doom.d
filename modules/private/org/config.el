@@ -8,6 +8,7 @@
       org-default-notes-file "~/wiki/refile.org"
       org-attach-id-dir "~/wiki/.attach/"
       org-roam-directory "~/wiki/pages/"
+      org-brain-path "~/wiki/pages/"
       org-journal-dir "~/wiki/journals/"
       org-use-property-inheritance t ;; convenient
       org-log-done 'time ;; log the time you finish something
@@ -315,7 +316,7 @@
   (deft-use-filename-as-title t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory "~/org/wiki/"))
+  (deft-directory "~/wiki/"))
 
 (setq-default major-mode 'org-mode)
 
