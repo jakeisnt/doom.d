@@ -28,5 +28,19 @@
 (package! company-org-roam :pin "1132663bd68022aa7ea005ff53c7c7571890769d")
 (package! org-super-agenda :pin "3264255989021b8563ea42b5d26acbc2a024f14d")
 
+
+;; ~/.doom.d/packages.el
+(package! org-mode
+  :recipe (:host github
+           :repo "yantar92/org"
+           :branch "feature/org-fold"
+           :files ("*.el" "lisp/*.el" "contrib/lisp/*.el")
+           :build (with-temp-file (expand-file-name "org-version.el" (straight--repos-dir "org"))
+                    (insert "(fset 'org-release (lambda () \"9.5\"))\n"
+                            "(fset 'org-git-version #'ignore)\n"
+                            "(provide 'org-version)\n")))
+  :pin "308c4f57d26307c0f57ad387a4638b051f541a9c"
+  :shadow 'org)
+
 (provide 'packages)
 ;;; packages.el ends here
