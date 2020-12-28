@@ -107,8 +107,7 @@
 (map! :leader
       "h r n" (lambda () (interactive)
                 (async-shell-command
-                 (concat "echo " (shell-quote-argument (read-passwd "Rebuilding NixOS. Password: "))
-                         " | sudo -S nixos-rebuild switch"))))
+                         "sudo -S nixos-rebuild switch")))
 
 (add-hook 'TeX-after-compilation-finished-functions
           #'TeX-revert-document-buffer)
