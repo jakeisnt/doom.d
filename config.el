@@ -11,12 +11,6 @@
 ;; Package-Requires: ((emacs YY) (cl-lib "0.5"))
 ;;
 ;; This file is not part of GNU Emacs.
-;;
-;;; Commentary:
-;;
-;;
-;;TODO copy some things from doom emacs private
-;;
 ;;; Code:
 
 (require 'evil)
@@ -40,7 +34,6 @@
       inhibit-compacting-font-caches t
       display-line-numbers-type 'relative
       select-enable-clipboard t
-      interprogram-paste-function 'x-cut-buffer-or-selection-value
       read-process-output-max (* 1024 1024)
       ;; lsp-completion-provider :capf
       lsp-idle-delay 0.500
@@ -51,8 +44,8 @@
 
       evil-ex-substitute-global t)
 
-(setq doom-font (font-spec :family "monospace" :size 24 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 24))
+(setq doom-font (font-spec :family "monospace" :size 16 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 16))
 
 (setq projectile-globally-ignored-directories '("node_modules" ".happypack" "flow-typed" "build" "lib")
       grep-find-ignored-directories '("node_modules" ".happypack"))
