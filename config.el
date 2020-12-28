@@ -106,8 +106,7 @@
 
 (map! :leader
       "h r n" (lambda () (interactive)
-                (async-shell-command
-                         "sudo -S nixos-rebuild switch")))
+                (async-shell-command "hey rebuild")))
 
 (add-hook 'TeX-after-compilation-finished-functions
           #'TeX-revert-document-buffer)
