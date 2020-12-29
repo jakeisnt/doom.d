@@ -18,7 +18,7 @@
 ;;; Code:
 (setq user-full-name "Jacob Chvatal"
       user-mail-address "jakechvatal@gmail.com"
-      doom-theme 'doom-dracula)
+      doom-theme 'doom-nord)
 
 (setq-default delete-by-moving-to-trash t
               tab-width 4
@@ -44,8 +44,8 @@
 
       evil-ex-substitute-global t)
 
-(setq doom-font (font-spec :family "monospace" :size 16 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 16))
+(setq doom-font (font-spec :family "monospace" :size 14 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 14))
 
 (setq projectile-globally-ignored-directories '("node_modules" ".happypack" "flow-typed" "build" "lib")
       grep-find-ignored-directories '("node_modules" ".happypack"))
@@ -121,7 +121,7 @@
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
-(defun hlu-make-script-executable ()
+(defun make-script-executable ()
   "If file starts with a shebang, make `buffer-file-name' executable
 
        Since it doesn't rely on ##chmod##, it also works for remote
@@ -129,6 +129,7 @@
 
        taken from:
        http://www.emacswiki.org/emacs-en/MakingScriptsExecutableOnSave"
+  (interactive)
   (save-excursion
     (save-restriction
       (widen)
@@ -171,8 +172,8 @@
 ")))
 
 ;; (use-package! ranger
-;;   ;; :init
-;;   ;; (ranger-override-dired-mode t)
+;;   :init
+;;   (ranger-override-dired-mode t)
 ;;   :config
 ;;   (setq
 ;;    ranger-cleanup-on-disable t
@@ -182,15 +183,14 @@
 ;;    ranger-max-preview-size 20
 ;;    ranger-dont-show-binary t))
 
-
 (defun ido-kill-emacs-hook ()
   ;; Quit emacs despite the ido.last buffer being written to.
   (ignore-errors (ido-save-history)))
 
 (use-package! atomic-chrome
-  :after-call focus-out-hook
+  :after-call after-focus-change-function
   :config
-  (setq atomic-chrome-default-major-mode 'markdown-mode
+  (setq atomic-chrome-default-major-mode 'org-mode
         atomic-chrome-buffer-open-style 'frame)
   (atomic-chrome-start-server))
 
