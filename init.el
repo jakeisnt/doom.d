@@ -64,6 +64,7 @@
        ;;grammar
 
        :tools
+       editorconfig
        ;;ansible
        ;;debugger
        direnv
@@ -100,7 +101,7 @@
        data                ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else
        ;; elixir              ; erlang done right
-       ;;elm               ; care for a cup of TEA?
+       elm               ; care for a cup of TEA?
        emacs-lisp          ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics
@@ -125,7 +126,7 @@
        markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        nix                ; I hereby declare "nix geht mehr!"
-       ;; ocaml
+       ocaml
 
        (org
         +brain
