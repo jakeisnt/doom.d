@@ -241,5 +241,14 @@
  :desc "Visit GitHub" "g" (lambda () (interactive) (browse-url "https://github.com/jakeisnt"))
  :desc "Visit local port" "l" 'visit-localhost)
 
+;; Insert the contents of all of the files in a directory into a single file
+(defun insert-directory ()
+  (interactive)
+  (let ((dir (read-directory-name "Directory to insert: ")))
+    (mapc #'(lambda (file)
+              (let ((file-full (concat dir file)))
+                (insert-file-contents file-full)))
+          (cddr (directory-files dir)))))
+
 (provide 'config)
 ;;; config.el ends here
