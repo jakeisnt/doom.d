@@ -250,5 +250,11 @@
                 (insert-file-contents file-full)))
           (cddr (directory-files dir)))))
 
+(defun pinentry-emacs (desc prompt ok error)
+  (let ((str (read-passwd (concat (replace-regexp-in-string "%22" "\"" (replace-regexp-in-string "%0A" "\n" desc)) prompt ": "))))
+    str))
+
+(global-wakatime-mode)
+
 (provide 'config)
 ;;; config.el ends here
