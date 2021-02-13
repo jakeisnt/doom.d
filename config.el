@@ -250,11 +250,46 @@
                 (insert-file-contents file-full)))
           (cddr (directory-files dir)))))
 
-(defun pinentry-emacs (desc prompt ok error)
-  (let ((str (read-passwd (concat (replace-regexp-in-string "%22" "\"" (replace-regexp-in-string "%0A" "\n" desc)) prompt ": "))))
-    str))
+;; Use pinentry inside emacs?
+(defun pinentry-emacs (desc prompt)
+  (let ((str (read-passwd (concat (replace-regexp-in-string "%22" "\"" (replace-regexp-in-string "%0A" "\n" desc)) prompt ": ")))) str))
+
+(require 'haskell)
+
+(defun haskell-auto-insert-module-template-universum ()
+  "Insert a module template for the newly created buffer."
+  (interactive)
+  (when (and (= (point-min)
+                (point-max))
+             (buffer-file-name))
+    (insert
+     "-- | "
+     "\n"
+     "\n"
+     "module "
+     )
+    (let ((name (haskell-guess-module-name)))
+      (if (string= name "")
+          (progn (insert "Main")
+                 (shm-evaporate (- (point) 5)
+                                (point)))
+        (insert name)))
+    (insert "\n"
+            "       (\n"
+            "       ) where\n"
+            "\n"
+            "import Universum\n"
+            "\n"
+            )
+    (goto-char (point-min))
+    (forward-char 4)
+    (god-mode)))
+
+(remove-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+(add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template-universum)
 
 (global-wakatime-mode)
+(pinentry-start)
 
 (provide 'config)
 ;;; config.el ends here
