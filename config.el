@@ -222,7 +222,7 @@
   "Visit a specified localhost port."
   (interactive)
   (browse-url
-   (concat "localhost:" (read-string "Visit port:"))))
+   (concat "http://localhost:" (read-string "Visit port:"))))
 
 ;; Find a URL
 (map! :leader
