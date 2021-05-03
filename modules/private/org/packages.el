@@ -19,7 +19,7 @@
 ;;
 ;;; Code:
 
-;; (package! org-projectile :pin "96a57a43555e24e5e0d81e79f0fbb47001c41bac")
+(package! org-projectile)
 ;; (package! org-roam-server :pin "fde2636d794f020ed5810fa38fe57a264932f661")
 ;; (package! org-roam :pin "ac2044b84bb99e8a77e834043b4aa16b4b89d8fc")
 ;; (package! org-ref :pin "2a91b6f67dc3116b0b688c1242ce67d90d833326")

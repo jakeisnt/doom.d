@@ -49,10 +49,10 @@
         "M-p" #'outline-previous-visible-heading)
   (setq org-src-window-setup 'current-window
         org-return-follows-link t
-        org-babel-load-languages '((emacs-lisp . t)
-                                   (python . t)
-                                   (dot . t))
-        org-confirm-babel-evaluate nil
+        ;; org-babel-load-languages '((emacs-lisp . t)
+        ;;                            (python . t)
+        ;;                            (dot . t))
+        ;; org-confirm-babel-evaluate nil
         org-use-speed-commands t
         org-catch-invisible-edits 'show org-preview-latex-image-directory "/tmp/ltximg/"
         org-structure-template-alist '(("a" . "export ascii")
@@ -218,7 +218,8 @@
 (setq org-edit-src-content-indentation 0
       org-src-tab-acts-natively t
       org-src-fontify-natively t
-      org-confirm-babel-evaluate nil)
+      ;; org-confirm-babel-evaluate nil
+      )
 
 (use-package! org-super-agenda
   :commands (org-super-agenda-mode))
