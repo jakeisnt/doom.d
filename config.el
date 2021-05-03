@@ -214,7 +214,7 @@
 (use-package! browse-url
   :init
   (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "firefox --new-window"))
+        browse-url-generic-program "firefox"))
 
 (define-key evil-normal-state-map (kbd "SPC a") 'link-hint-open-link)
 

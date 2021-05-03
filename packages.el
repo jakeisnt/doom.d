@@ -63,6 +63,7 @@
 (package! nix-mode :pin "0023fc5b100ec0c939ffe699d1a7d1afcf1f417a")
 (package! wakatime-mode)
 (package! pinentry)
+(package! zig-mode)
 (provide 'packages)
 
 ;;; packages.el ends here
