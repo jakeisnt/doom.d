@@ -91,7 +91,7 @@
        ;;tty
 
        :lang
-       ;; agda              ; types of types of types of types...
+       agda              ; types of types of types of types...
        cc                ; C/C++/Obj-C madness
        (clojure +lsp)      ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
@@ -114,10 +114,10 @@
        ;;hy                ; readability of scheme w/ speed of python
        ;; idris             ;
        json              ; At least it ain't XML
-       (java +meghanada) ; the poster child for carpal tunnel syndrome
+       ;; (java +meghanada) ; the poster child for carpal tunnel syndrome
        (javascript +lsp)
        ;;julia             ; a better, faster MATLAB
-       kotlin            ; a better, slicker Java(Script)
+       ;; kotlin            ; a better, slicker Java(Script)
        latex             ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
@@ -155,7 +155,7 @@
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       ; (rust +lsp)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (rust +lsp)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
        sh                  ; she sells {ba,z,fi}sh shells on the C xor

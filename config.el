@@ -256,37 +256,37 @@
 
 (require 'haskell)
 
-(defun haskell-auto-insert-module-template-universum ()
-  "Insert a module template for the newly created buffer."
-  (interactive)
-  (when (and (= (point-min)
-                (point-max))
-             (buffer-file-name))
-    (insert
-     "-- | "
-     "\n"
-     "\n"
-     "module "
-     )
-    (let ((name (haskell-guess-module-name)))
-      (if (string= name "")
-          (progn (insert "Main")
-                 (shm-evaporate (- (point) 5)
-                                (point)))
-        (insert name)))
-    (insert "\n"
-            "       (\n"
-            "       ) where\n"
-            "\n"
-            "import Universum\n"
-            "\n"
-            )
-    (goto-char (point-min))
-    (forward-char 4)
-    (god-mode)))
+;; (defun haskell-auto-insert-module-template-universum ()
+;;   "Insert a module template for the newly created buffer."
+;;   (interactive)
+;;   (when (and (= (point-min)
+;;                 (point-max))
+;;              (buffer-file-name))
+;;     (insert
+;;      "-- | "
+;;      "\n"
+;;      "\n"
+;;      "module "
+;;      )
+;;     (let ((name (haskell-guess-module-name)))
+;;       (if (string= name "")
+;;           (progn (insert "Main")
+;;                  (shm-evaporate (- (point) 5)
+;;                                 (point)))
+;;         (insert name)))
+;;     (insert "\n"
+;;             "       (\n"
+;;             "       ) where\n"
+;;             "\n"
+;;             "import Universum\n"
+;;             "\n"
+;;             )
+;;     (goto-char (point-min))
+;;     (forward-char 4)
+;;     (god-mode)))
 
-(remove-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
-(add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template-universum)
+;; (remove-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+;; (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template-universum)
 
 (global-wakatime-mode)
 (pinentry-start)
