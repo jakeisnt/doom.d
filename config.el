@@ -102,7 +102,8 @@
   (setq company-idle-delay nil ;; 0.5
         company-minimum-prefix-length 2
         company-show-numbers t)
-  (add-hook 'evil-normal-state-entry-hook #'company-abort))
+  ;; (add-hook 'evil-normal-state-entry-hook #'company-abort)
+  )
 
 (map! :leader
       "h r n" (lambda () (interactive)

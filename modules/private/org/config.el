@@ -24,22 +24,22 @@
   :config
   (setq org-ref-completion-library 'org-ref-ivy-cite))
 
-(use-package! org-projectile
-  :init
-  (map! :leader
-        :prefix "p"
-        :desc "Add a TODO to a project" "n" #'org-projectile-project-todo-completing-read
-        :desc "Add a TODO to the current project." "N" #'org-projectile-capture-for-current-project)
-  :config
-  (progn
-    (org-projectile-per-project)
-    (setq org-projectile-projects-file
-          "TODO.org")
-    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-    (push (org-projectile-project-todo-entry) org-capture-templates)))
-(setq org-log-done 'time
-      org-log-into-drawer t
-      org-log-state-notes-insert-after-drawers nil)
+; (use-package! org-projectile
+;   :init
+;   (map! :leader
+;         :prefix "p"
+;         :desc "Add a TODO to a project" "n" #'org-projectile-project-todo-completing-read
+;         :desc "Add a TODO to the current project." "N" #'org-projectile-capture-for-current-project)
+;   :config
+;   (progn
+;     (org-projectile-per-project)
+;     (setq org-projectile-projects-file
+;           "TODO.org")
+;     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+;     (push (org-projectile-project-todo-entry) org-capture-templates)))
+; (setq org-log-done 'time
+;       org-log-into-drawer t
+;       org-log-state-notes-insert-after-drawers nil)
 
 (use-package! org
   :mode ("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode)

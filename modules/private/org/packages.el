@@ -19,7 +19,7 @@
 ;;
 ;;; Code:
 
-(package! org-projectile)
+; (package! org-projectile)
 (package! org-ref)
 (package! org-roam-server)
 (package! company-org-roam)
