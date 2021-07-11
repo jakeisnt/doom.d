@@ -64,6 +64,8 @@
 (package! wakatime-mode)
 (package! pinentry)
 (package! zig-mode)
+(package! tree-sitter)
+(package! tree-sitter-langs)
 (provide 'packages)
 
 ;;; packages.el ends here
