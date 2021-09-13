@@ -166,6 +166,7 @@
        web                 ; the tubes
        yaml              ; JSON, but reada
        zig ;; C but simpler!
+       acl2s
 
        :email
        ;;(mu4e +gmail)
