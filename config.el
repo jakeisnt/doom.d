@@ -289,11 +289,11 @@
 ;; (remove-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
 ;; (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template-universum)
 
-(use-package! tree-sitter
-  :config
-  (require 'tree-sitter-langs)
-  (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+; (use-package! tree-sitter
+;   :config
+;   (require 'tree-sitter-langs)
+;   (global-tree-sitter-mode)
+;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
 (global-wakatime-mode)
 (pinentry-start)
