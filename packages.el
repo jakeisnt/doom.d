@@ -60,6 +60,9 @@
 (package! elpher :pin "cc19cc4d1c174ed568625d2f34cf25914184d1f2")
 (package! atomic-chrome)
 (package! org-mode :recipe (:repo "https://code.orgmode.org/bzg/org-mode.git"))
+
+
+(package! proof-general :recipe (:host github :repo "jakeisnt/PG"))
 (package! nix-mode :pin "0023fc5b100ec0c939ffe699d1a7d1afcf1f417a")
 (package! wakatime-mode)
 (package! pinentry)

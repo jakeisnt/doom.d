@@ -108,23 +108,23 @@
                                            ("color"      . "#C9C9C9")
                                            ("fontcolor"  . "#111111")
                                            ("fontname"   . "Overpass")))
-  (use-package! org-roam-protocol)
-  (use-package! org-roam-server
-    :after org-roam
-    :config
-    (setq org-roam-server-host "127.0.0.1"
-          org-roam-server-port 8078
-          org-roam-server-export-inline-images t
-          org-roam-server-authenticate nil
-          org-roam-server-label-truncate t
-          org-roam-server-label-truncate-length 60
-          org-roam-server-label-wrap-length 20))
+  ; (use-package! org-roam-protocol)
+  ; (use-package! org-roam-server
+  ;   :after org-roam
+  ;   :config
+  ;   (setq org-roam-server-host "127.0.0.1"
+  ;         org-roam-server-port 8078
+  ;         org-roam-server-export-inline-images t
+  ;         org-roam-server-authenticate nil
+  ;         org-roam-server-label-truncate t
+  ;         org-roam-server-label-truncate-length 60
+  ;         org-roam-server-label-wrap-length 20))
 
-  (defun org-roam-server-open ()
-    "Ensure the server is active, then open the roam graph."
-    (interactive)
-    (org-roam-server-mode 1)
-    (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port)))
+  ; (defun org-roam-server-open ()
+  ;   "Ensure the server is active, then open the roam graph."
+  ;   (interactive)
+  ;   (org-roam-server-mode 1)
+  ;   (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port)))
 
 
   (setq org-roam-ref-capture-templates

@@ -15,7 +15,7 @@
 ;;
 ;;; Commentary:
 ;;
-;;  
+;;
 ;;
 ;;; Code:
 
@@ -118,5 +118,5 @@ you're done. This can be called from an external shell script."
           (setq doom-fallback-buffer-name "*scratch*")
           (add-hook 'delete-frame-functions #'cleanup-scratch-frame))))))
 
-(provide 'jakechv)
-;;; jakechv.el ends here
+(provide 'jakeisnt)
+;;; jakeisnt.el ends here

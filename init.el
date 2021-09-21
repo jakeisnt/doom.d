@@ -5,7 +5,10 @@
        ;; exwm
 
        :completion
-       (company +tng)
+       (company
+        ;; +childframe
+        ;; +tng ; when i want it to get outof the way...
+        )
        ivy
        ;;helm
        ;;ido
@@ -15,7 +18,7 @@
        doom
        doom-dashboard
        hl-todo
-       
+
        ;;indent-guides
        (modeline +light)
 
@@ -55,7 +58,7 @@
        :term
        eshell            ; the elisp shell that works everywhere
        ;;shell           ; simple shell REPL for Emacs
-       ;; term           ; basic terminal emulator for Emacs
+       term           ; basic terminal emulator for Emacs
        ;; vterm          ; the best terminal emulation in Emacs
 
        :checkers
@@ -95,7 +98,7 @@
        cc                ; C/C++/Obj-C madness
        (clojure +lsp)      ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
-       ;; coq               ; proofs-as-programs
+       coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
        data                ; config/data formats
@@ -112,7 +115,7 @@
        ;;(go +lsp)         ; the hipster dialect
        (haskell +nix +lsp)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
-       ;; idris             ;
+       idris             ;
        json              ; At least it ain't XML
        ;; (java +meghanada) ; the poster child for carpal tunnel syndrome
        (javascript +lsp)
@@ -126,19 +129,18 @@
        markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        nix                ; I hereby declare "nix geht mehr!"
-       ocaml
+       ; ocaml - ocamlformat broken for some reason
 
        (org
-        +brain
         +dragndrop
         +gnuplot
         +journal
         +pandoc
         +pomodoro
         +present
-        +roam
+        ;; +roam
+        +roam2
         +noter
-        ;; +hugo
         ;; +present
         ;; +tanglesync
         ;; +chef
@@ -148,7 +150,10 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;; purescript        ; javascript, but functional
-       ;; python        ; beautiful is better than ugly
+       (python
+        +lsp
+        +pyright)
+                           ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6

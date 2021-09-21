@@ -99,7 +99,7 @@
 
 (use-package! company
   :config
-  (setq company-idle-delay nil ;; 0.5
+  (setq company-idle-delay 0.25
         company-minimum-prefix-length 2
         company-show-numbers t)
   ;; (add-hook 'evil-normal-state-entry-hook #'company-abort)
