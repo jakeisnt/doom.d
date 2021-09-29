@@ -1,16 +1,18 @@
-;;; YY --- description -*- lexical-binding: t; -*-
+;;; config.el --- Custom functions for Doom -*- lexical-binding: t; -*-
 ;;;
 ;;
-;; Copyright (C) YY YY
+;; Copyright (C) 2019-2021 Jacob Chvatal
 ;;
 ;; Author: YY <http://github/YY> ;; Maintainer: YY <YY> ;; Created: YY
 ;; Modified: YY
 ;; Version: 0.0.1
-;; Keywords:
+;; Keywords: tools
 ;; Homepage: https://github.com/YY/YY
-;; Package-Requires: ((emacs YY) (cl-lib "0.5"))
+;; Package-Requires: ((emacs "24.1"))
 ;;
 ;; This file is not part of GNU Emacs.
+;;; Commentary:
+;; This is commentary suggested by error messages.
 ;;; Code:
 
 (require 'evil)
@@ -101,7 +103,7 @@
   :config
   (setq company-idle-delay 0.25
         company-minimum-prefix-length 2
-        company-show-numbers t)
+        company-show-quick-access t)
   ;; (add-hook 'evil-normal-state-entry-hook #'company-abort)
   )
 
@@ -295,8 +297,25 @@
 ;   (global-tree-sitter-mode)
 ;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
+(require 'tree-sitter)
+(use-package! org-pandoc-import :after org)
+(use-package! proof-general)
+
+;; lots of language sensitive manipulation tools!
+(use-package! symex
+  :config
+  (symex-initialize)
+  (global-set-key (kbd "s-;") 'symex-mode-interface)
+  :custom
+  (symex-modal-backend 'evil))
+
+
+(global-set-key (kbd "C-(") 'sp-backward-barf-sexp)
+(global-set-key (kbd "C-)") 'sp-forward-barf-sexp)
+(global-set-key (kbd "C-9") 'sp-backward-slurp-sexp)
+(global-set-key (kbd "C-0") 'sp-forward-slurp-sexp)
+
 (global-wakatime-mode)
-(pinentry-start)
 
 (provide 'config)
 ;;; config.el ends here

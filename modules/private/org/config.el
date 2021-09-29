@@ -8,6 +8,7 @@
       org-default-notes-file "~/wiki/refile.org"
       org-attach-id-dir "~/wiki/.attach/"
       org-roam-directory "~/wiki/pages/"
+      org-roam-dailies-directory "~/wiki/journals/"
       org-brain-path "~/wiki/pages/"
       org-journal-dir "~/wiki/journals/"
       org-use-property-inheritance t ;; convenient
@@ -184,14 +185,7 @@
   (set-company-backend! 'org-mode '(company-org-roam company-yasnippet company-dabbrev)))
 
 
-(use-package! org-journal ;; org-journal configuration
-  :config
-  (setq org-journal-date-prefix "#+TITLE: "
-        org-journal-file-format "%Y-%m-%d.org"
-        org-journal-carryover-items nil)
-  (defun org-journal-today ()
-    (interactive)
-    (org-journal-new-entry t)))
+
 
 (use-package! bibtex-completion ;; autocompletion for notes templates
   :config

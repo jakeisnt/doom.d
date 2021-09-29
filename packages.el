@@ -51,24 +51,21 @@
 ;(unpin! t)
 
 ;;;; Code:
-;; (package! org-pandoc-import
-;;   :recipe (:host github ;; edit non-org files as org files
-;;            :repo "tecosaur/org-pandoc-import"
-;;            :files ("*.el" "filters" "preprocessors")))
-;; (package! proof-general)
+(package! org-pandoc-import
+  :recipe (:host github
+           :repo "tecosaur/org-pandoc-import"
+           :files ("*.el" "filters" "preprocessors")))
+
 ;; (package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")))
-(package! elpher :pin "cc19cc4d1c174ed568625d2f34cf25914184d1f2")
+;; (package! elpher :pin "cc19cc4d1c174ed568625d2f34cf25914184d1f2") : gopher and gemini client for emacs
 (package! atomic-chrome)
-(package! org-mode :recipe (:repo "https://code.orgmode.org/bzg/org-mode.git"))
-
-
-(package! proof-general :recipe (:host github :repo "jakeisnt/PG"))
 (package! nix-mode :pin "0023fc5b100ec0c939ffe699d1a7d1afcf1f417a")
+(package! proof-general :recipe (:host github :repo "jakeisnt/PG"))
 (package! wakatime-mode)
-(package! pinentry)
-(package! zig-mode)
-; (package! tree-sitter-langs)
-; (package! tree-sitter)
+(package! tree-sitter)
+(package! symex)
+;; (package! tree-sitter-langs)
+
 (provide 'packages)
 
 ;;; packages.el ends here
