@@ -35,7 +35,7 @@
  doom-modeline-workspace-name t
  doom-modeline-persp-name nil
  doom-modeline-persp-icon nil
- doom-modeline-mu4e t
+ doom-modeline-mu4e nil
  doom-modeline-github t
  display-time-load-average nil
  display-time-24hr-format t)
