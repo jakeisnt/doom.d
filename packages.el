@@ -64,7 +64,13 @@
 (package! wakatime-mode)
 (package! tree-sitter)
 (package! symex)
-;; (package! tree-sitter-langs)
+;; (package! pinentry)
+(package! gitconfig-mode
+  :recipe (:host github :repo "magit/git-modes"
+           :files ("gitconfig-mode.el")))
+(package! gitignore-mode
+  :recipe (:host github :repo "magit/git-modes"
+           :files ("gitignore-mode.el")))
 
 (provide 'packages)
 

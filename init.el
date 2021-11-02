@@ -98,6 +98,7 @@
        cc                ; C/C++/Obj-C madness
        (clojure +lsp)      ; java with a lisp
        common-lisp       ; if you've seen one lisp, you've seen them all
+       ;; TODO common-lisp bindings incompatible with acl2
        ;; coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
@@ -155,7 +156,7 @@
                            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        (racket
-        +lsp
+        ;; +lsp
         +xp)
                                         ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6

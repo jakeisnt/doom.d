@@ -317,5 +317,20 @@
 
 (global-wakatime-mode)
 
+; pinentry
+;; (use-package! pinentry
+;;         :init (setq epg-pinentry-mode `loopback))
+
+;; (defun pinentry-emacs (desc prompt ok error)
+;;   (interactive)
+;;   (let ((str (read-passwd (concat (replace-regexp-in-string "%22" "\"" (replace-regexp-in-string "%0A" "\n" desc)) prompt ": "))))
+;;     str))
+
+(use-package! epg
+  :init (setq epg-pinentry-mode 'loopback))
+
+
+;; (pinentry-start)
+
 (provide 'config)
 ;;; config.el ends here
