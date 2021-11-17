@@ -74,4 +74,11 @@
 
 (provide 'packages)
 
+; for networks: using vagrant interface from emacs
+(package! vagrant-tramp)
+(package! vagrant)
+
+; reason/rescript
+(package! reason-mode)
+
 ;;; packages.el ends here

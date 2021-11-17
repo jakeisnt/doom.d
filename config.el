@@ -329,6 +329,23 @@
 (use-package! epg
   :init (setq epg-pinentry-mode 'loopback))
 
+;; -- reasonml ---
+;; (after! lsp-mode
+;;   (lsp-register-client
+;;    (make-lsp-client :new-connection (lsp-stdio-connection
+;;                                      (-const "ocaml-language-server --stdio"))
+;;                     :major-modes '(reason-mode)
+;;                     :notification-handlers (ht ("client/registerCapability" 'ignore))
+;;                     :priority 1
+;;                     :server-id 'ocaml-reason-ls)))
+
+(after! reason-mode
+  ;; (customize-set-variable 'flycheck-check-syntax-automatically
+  ;;                         '(save idle-change idle-buffer-switch mode-enabled))
+  ;; (add-hook! reason-mode #'lsp)
+  ;; (add-hook! reason-mode (add-hook 'before-save-hook #'lsp-format-buffer nil t))
+  )
+
 
 ;; (pinentry-start)
 
