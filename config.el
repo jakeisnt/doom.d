@@ -346,6 +346,47 @@
   ;; (add-hook! reason-mode (add-hook 'before-save-hook #'lsp-format-buffer nil t))
   )
 
+(add-hook! org-mode org-fragtog-mode)
+
+;; scale latex font by some amount
+(defun j/org-format-latex-font-scale (amt)
+  (let ((new-latex-size
+         (+ amt (plist-get org-format-latex-options :scale))))
+    (setq org-format-latex-options
+          (plist-put
+           org-format-latex-options
+           :scale new-latex-size))))
+
+;; increase font by hardcoded value
+(defun j/org-format-latex-font-increase (amt)
+    (j/org-format-latex-font-scale amt))
+
+;; decrease font by hardcoded value
+(defun j/org-format-latex-font-decrease (amt)
+    (j/org-format-latex-font-scale (- amt)))
+
+
+(defun j/text-scale-increase (amt)
+    (interactive "p")
+    (text-scale-increase amt)
+    (j/org-format-latex-font-increase amt))
+
+(defun j/text-scale-decrease (amt)
+    (interactive "p")
+    (text-scale-decrease amt)
+    (j/org-format-latex-font-decrease amt))
+
+(map! :after evil-org
+      :map evil-org-mode-map
+      :ie "C-=" #'j/text-scale-increase)
+(map! :after evil-org
+      :map evil-org-mode-map
+      :ie "C--" #'j/text-scale-decrease)
+
+(after! org
+  (plist-put org-format-latex-options :scale 0.5))
+
+
 
 ;; (pinentry-start)
 

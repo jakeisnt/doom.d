@@ -135,56 +135,13 @@
            :head "#+TITLE: ${title}
     #+ROAM_KEY: ${ref}
     - source :: ${ref}"
-           :unnarrowed t)))
-  (defun j/org-roam-export-all ()
-    "Re-exports all Org-roam files to Hugo markdown."
-    (interactive)
-    (dolist (f (org-roam--list-all-files))
-      (with-current-buffer (find-file f)
-        (when (s-contains? "setupfile" (buffer-string))
-          (org-hugo-export-wim-to-md)))))
-  (defun j/org-roam--backlinks-list (file)
-    (when (org-roam--org-roam-file-p file)
-      (mapcar #'car (org-roam-db-query [:select :distinct [from]
-                                        :from links
-                                        :where (= to $s1)
-                                        :and from :not :like $s2] file "%private%"))))
-  (defun j/org-export-preprocessor (_backend)
-    (when-let ((links (j/org-roam--backlinks-list (buffer-file-name))))
-      (insert "\n** Backlinks\n")
-      (dolist (link links)
-        (insert (format "- [[file:%s][%s]]\n"
-                        (file-relative-name link org-roam-directory)
-                        (org-roam--get-title-or-slug link))))))
-
-  (defun j/org-roam-export-updated ()
-    "Re-export files that are linked to the current file."
-    (let ((files (org-roam-db-query [:select [to] :from links :where (= from $s1)] buffer-file-name)))
-      (interactive)
-      (dolist (f files)
-        (with-current-buffer (find-file-noselect (car f))
-          (when (s-contains? "setupfile" (buffer-string))
-            (org-hugo-export-wim-to-md))))))
-
-  (add-hook 'org-export-before-processing-hook #'j/org-export-preprocessor))
-
-(after! (org ox-hugo)
-  (defun j/conditional-hugo-enable ()
-    (save-excursion
-      (if (cdr (assoc "SETUPFILE" (org-roam--extract-global-props '("SETUPFILE"))))
-          (org-hugo-auto-export-mode +1)
-        (org-hugo-auto-export-mode -1))))
-  (add-hook 'org-mode-hook #'j/conditional-hugo-enable))
-
-
+           :unnarrowed t))))
 
 (use-package! company-org-roam
   :when (featurep! :completion company)
   :after org-roam
   :config
   (set-company-backend! 'org-mode '(company-org-roam company-yasnippet company-dabbrev)))
-
-
 
 
 (use-package! bibtex-completion ;; autocompletion for notes templates

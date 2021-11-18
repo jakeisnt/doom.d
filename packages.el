@@ -78,7 +78,10 @@
 (package! vagrant-tramp)
 (package! vagrant)
 
-; reason/rescript
+;; org-mode
+(package! org-fragtog)
+
+                                        ; reason/rescript
 (package! reason-mode)
 
 ;;; packages.el ends here
