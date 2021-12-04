@@ -72,7 +72,9 @@
   :recipe (:host github :repo "magit/git-modes"
            :files ("gitignore-mode.el")))
 
-(provide 'packages)
+(package! idris2-mode
+ :recipe (:host github :repo "idris-community/idris2-mode"))
+
 
 ; for networks: using vagrant interface from emacs
 (package! vagrant-tramp)
@@ -83,5 +85,7 @@
 
                                         ; reason/rescript
 (package! reason-mode)
+
+(provide 'packages)
 
 ;;; packages.el ends here

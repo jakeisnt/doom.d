@@ -116,7 +116,7 @@
  ;;(go +lsp)         ; the hipster dialect
  (haskell +nix +lsp)                    ; a language that's lazier than I am
  ;;hy                ; readability of scheme w/ speed of python
- idris        ;
+ ;; idris        ; idris2 is better!!!!!!!!!!!!!!
  json         ; At least it ain't XML
  ;; (java +meghanada) ; the poster child for carpal tunnel syndrome
  (javascript +lsp)
@@ -130,7 +130,7 @@
  markdown                  ; writing docs for people to ignore
  ;;nim               ; python + lisp at the speed of c
  nix                                ; I hereby declare "nix geht mehr!"
-                                        ; ocaml - ocamlformat broken for some reason
+ ocaml ;; - ocamlformat broken for some reason
 
  (org
   +dragndrop
