@@ -353,5 +353,8 @@
 
 ;; (advice-add #'evil-motion-range :around #'~/evil-motion-range--wrapper)
 
+
+(setq-default major-mode 'lisp-mode)
+
 (provide 'config)
 ;;; config.el ends here

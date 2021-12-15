@@ -138,7 +138,6 @@
   +pandoc
   +pomodoro
   +present
-  ;; +roam
   +roam2
   +noter
   ;; +present
@@ -157,8 +156,7 @@
  ;;qt                ; the 'cutest' gui framework ever
  (racket
   ;; +lsp
-  +xp)
-                                        ; a DSL for DSLs
+  +xp) ; a DSL for DSLs
  ;;raku              ; the artist formerly known as perl6
  ;;rest              ; Emacs as a REST client
  ;;rst               ; ReST in peace

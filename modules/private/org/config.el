@@ -270,7 +270,5 @@
   (deft-default-extension "org")
   (deft-directory "~/wiki/"))
 
-(setq-default major-mode 'org-mode)
-
 (provide 'config)
 ;;; config.el ends here
