@@ -60,17 +60,17 @@
 ;; (package! elpher :pin "cc19cc4d1c174ed568625d2f34cf25914184d1f2") : gopher and gemini client for emacs
 (package! atomic-chrome)
 (package! nix-mode :pin "0023fc5b100ec0c939ffe699d1a7d1afcf1f417a")
-(package! proof-general :recipe (:host github :repo "jakeisnt/PG"))
+;(package! proof-general :recipe (:host github :repo "jakeisnt/PG"))
 (package! wakatime-mode)
 (package! tree-sitter)
 (package! symex)
 ;; (package! pinentry)
-(package! gitconfig-mode
-  :recipe (:host github :repo "magit/git-modes"
-           :files ("gitconfig-mode.el")))
-(package! gitignore-mode
-  :recipe (:host github :repo "magit/git-modes"
-           :files ("gitignore-mode.el")))
+;(package! gitconfig-mode
+ ; :recipe (:host github :repo "magit/git-modes"
+  ;         :files ("gitconfig-mode.el")))
+;(package! gitignore-mode
+ ; :recipe (:host github :repo "magit/git-modes"
+  ;         :files ("gitignore-mode.el")))
 
 (package! idris2-mode
  :recipe (:host github :repo "idris-community/idris2-mode"))

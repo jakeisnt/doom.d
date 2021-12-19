@@ -57,10 +57,10 @@
  vc
 
  :term
- eshell                 ; the elisp shell that works everywhere
+ eshell                          ; the elisp shell that works everywhere
  ;;shell           ; simple shell REPL for Emacs
- term                   ; basic terminal emulator for Emacs
- vterm          ; the best terminal emulation in Emacs
+ term                                   ; basic terminal emulator for Emacs
+ vterm                                  ; the best terminal emulation in Emacs
 
  :checkers
  syntax
@@ -85,7 +85,7 @@
  pdf            ; pdf enhancements
  ;;prodigy           ; managing external services & code builders
  ;;rgb               ; creating color strings
- taskrunner        ; taskrunner for all your projects
+ taskrunner       ; taskrunner for all your projects
  ;;terraform         ; infrastructure as code
  ;;tmux              ; an API for interacting with tmux
  ;;upload            ; map local to remote projects via ssh/ftp
@@ -129,8 +129,8 @@
  ;;lua               ; one-based indices? one-based indices
  markdown                  ; writing docs for people to ignore
  ;;nim               ; python + lisp at the speed of c
- nix                                ; I hereby declare "nix geht mehr!"
- ocaml ;; - ocamlformat broken for some reason
+ nix                                    ; I hereby declare "nix geht mehr!"
+ ocaml                                  ;; - ocamlformat broken for some reason
 
  (org
   +dragndrop
@@ -156,7 +156,7 @@
  ;;qt                ; the 'cutest' gui framework ever
  (racket
   ;; +lsp
-  +xp) ; a DSL for DSLs
+  +xp)                  ; a DSL for DSLs
  ;;raku              ; the artist formerly known as perl6
  ;;rest              ; Emacs as a REST client
  ;;rst               ; ReST in peace
@@ -188,7 +188,7 @@
  :private
  editor
  internet
- modeline
+modeline ;; memento-mori-mode broken
  org
  tidal
  ;; urweb

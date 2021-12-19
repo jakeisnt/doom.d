@@ -17,11 +17,6 @@
             (equal  batteryFull (substring (battery) 0 (length batteryFull))))
   (display-battery-mode 1))
 
-(use-package! memento-mori
-  :config
-  (setq memento-mori-birth-date "1999-11-05")
-  (memento-mori-mode))
-
 (progn
   (line-number-mode -1)
   (column-number-mode -1)

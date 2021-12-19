@@ -253,53 +253,16 @@
                 (insert-file-contents file-full)))
           (cddr (directory-files dir)))))
 
-;; Use pinentry inside emacs?
-(defun pinentry-emacs (desc prompt)
-  (let ((str (read-passwd (concat (replace-regexp-in-string "%22" "\"" (replace-regexp-in-string "%0A" "\n" desc)) prompt ": ")))) str))
 
-(require 'haskell)
 
-;; (defun haskell-auto-insert-module-template-universum ()
-;;   "Insert a module template for the newly created buffer."
-;;   (interactive)
-;;   (when (and (= (point-min)
-;;                 (point-max))
-;;              (buffer-file-name))
-;;     (insert
-;;      "-- | "
-;;      "\n"
-;;      "\n"
-;;      "module "
-;;      )
-;;     (let ((name (haskell-guess-module-name)))
-;;       (if (string= name "")
-;;           (progn (insert "Main")
-;;                  (shm-evaporate (- (point) 5)
-;;                                 (point)))
-;;         (insert name)))
-;;     (insert "\n"
-;;             "       (\n"
-;;             "       ) where\n"
-;;             "\n"
-;;             "import Universum\n"
-;;             "\n"
-;;             )
-;;     (goto-char (point-min))
-;;     (forward-char 4)
-;;     (god-mode)))
-
-;; (remove-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
-;; (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template-universum)
-
-; (use-package! tree-sitter
-;   :config
-;   (require 'tree-sitter-langs)
-;   (global-tree-sitter-mode)
-;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+                                        ; (use-package! tree-sitter
+                                        ;   :config
+                                        ;   (require 'tree-sitter-langs)
+                                        ;   (global-tree-sitter-mode)
+                                        ;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
 (require 'tree-sitter)
 (use-package! org-pandoc-import :after org)
-(use-package! proof-general)
 
 ;; lots of language sensitive manipulation tools!
 (use-package! symex
@@ -315,33 +278,17 @@
 (global-set-key (kbd "C-9") 'sp-backward-slurp-sexp)
 (global-set-key (kbd "C-0") 'sp-forward-slurp-sexp)
 
-(global-wakatime-mode)
-
-;; emacs pinentry (it works - so don't touch it...)
+;; emacs pinentry
 (use-package! epg
   :init (setq epg-pinentry-mode 'loopback))
 
-;; -- reasonml ---
-;; (after! lsp-mode
-;;   (lsp-register-client
-;;    (make-lsp-client :new-connection (lsp-stdio-connection
-;;                                      (-const "ocaml-language-server --stdio"))
-;;                     :major-modes '(reason-mode)
-;;                     :notification-handlers (ht ("client/registerCapability" 'ignore))
-;;                     :priority 1
-;;                     :server-id 'ocaml-reason-ls)))
+;(use-package! org-fragtog
+;  :init (add-hook! org-mode org-fragtog-mode))
 
-(after! reason-mode
-  ;; (customize-set-variable 'flycheck-check-syntax-automatically
-  ;;                         '(save idle-change idle-buffer-switch mode-enabled))
-  ;; (add-hook! reason-mode #'lsp)
-  ;; (add-hook! reason-mode (add-hook 'before-save-hook #'lsp-format-buffer nil t))
-  )
 
-(add-hook! org-mode org-fragtog-mode)
 
-(after! org
-  (plist-put org-format-latex-options :scale 0.5))
+;(after! org
+;  (plist-put org-format-latex-options :scale 0.5))
 
 ;;Fixes lag when editing idris code with evil
 ;; (defun ~/evil-motion-range--wrapper (fn &rest args)
@@ -355,6 +302,8 @@
 
 
 (setq-default major-mode 'lisp-mode)
+
+(global-wakatime-mode)
 
 (provide 'config)
 ;;; config.el ends here
