@@ -278,7 +278,6 @@
 (global-set-key (kbd "C-9") 'sp-backward-slurp-sexp)
 (global-set-key (kbd "C-0") 'sp-forward-slurp-sexp)
 
-;; emacs pinentry
 (use-package! epg
   :init (setq epg-pinentry-mode 'loopback))
 
@@ -300,6 +299,7 @@
 
 ;; (advice-add #'evil-motion-range :around #'~/evil-motion-range--wrapper)
 
+(add-to-list 'auto-mode-alist '("\\.lalrpop\\'" . rustic-mode))
 
 (setq-default major-mode 'lisp-mode)
 
