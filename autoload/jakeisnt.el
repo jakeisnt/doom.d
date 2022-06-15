@@ -7,14 +7,13 @@
 ;; Created: YY
 ;; Modified: YY
 ;; Version: 0.0.1
-;; Keywords:
+;; Keywords: convenience
 ;; Homepage: https://github.com/YY/YY
-;; Package-Requires: ((emacs YY) (cl-lib "0.5"))
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; Commentary:
-;;
+;; nothing lol
 ;;
 ;;
 ;;; Code:
