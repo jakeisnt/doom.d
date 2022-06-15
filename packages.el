@@ -86,6 +86,8 @@
                                         ; reason/rescript
 (package! reason-mode)
 
+(package! code-review :disable t)
+
 (provide 'packages)
 
 ;;; packages.el ends here
