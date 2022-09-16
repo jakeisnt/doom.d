@@ -88,6 +88,8 @@
 
 (package! code-review :disable t)
 
+(package! pdf-tools :built-in 'prefer)
+
 (provide 'packages)
 
 ;;; packages.el ends here
