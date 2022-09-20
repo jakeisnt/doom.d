@@ -20,7 +20,7 @@
 ;;; Code:
 (setq user-full-name "Jacob Chvatal"
       user-mail-address "jakechvatal@gmail.com"
-      doom-theme 'doom-nord)
+      doom-theme 'doom-plain-dark)
 
 (setq-default delete-by-moving-to-trash t
               tab-width 4
