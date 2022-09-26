@@ -404,55 +404,55 @@ then restart the ACL2-Doc browser to view that manual."
 
 (defun manual-index-pathname ()
   (let* ((rendered (acl2-doc-pathname))
-	 (rendered-length (length rendered))
-	 (suffix "system/doc/rendered-doc-combined.lsp")
-	 (suffix-length (length suffix)))
+         (rendered-length (length rendered))
+         (suffix "system/doc/rendered-doc-combined.lsp")
+         (suffix-length (length suffix)))
 ;;; Sanity check:
     (or (equal (substring rendered (- rendered-length suffix-length))
-	       "system/doc/rendered-doc-combined.lsp")
-	(error "Impementation error in acl2-doc: unexpected suffix,\n%s"
-	       (substring rendered (- rendered-length suffix-length))))
+               "system/doc/rendered-doc-combined.lsp")
+        (error "Impementation error in acl2-doc: unexpected suffix,\n%s"
+               (substring rendered (- rendered-length suffix-length))))
     (concat
      (substring rendered 0 (- rendered-length suffix-length))
      "doc/manual/index.html")))
 
 (defun acl2-doc-fetch ()
   (let* ((pathname (acl2-doc-pathname))
-	 (pathname-exists (file-exists-p pathname))
-	 (url (acl2-doc-url))
-	 (pathname-gz (acl2-doc-gzipped-file pathname))
-	 (manual-index-pathname (manual-index-pathname)))
+         (pathname-exists (file-exists-p pathname))
+         (url (acl2-doc-url))
+         (pathname-gz (acl2-doc-gzipped-file pathname))
+         (manual-index-pathname (manual-index-pathname)))
     (cond
      ((and pathname-exists
-	   (or (null url) ;; no download option
-	       (null manual-index-pathname) ; no writes dates to compare
-	       (file-newer-than-file-p pathname manual-index-pathname)
-	       (yes-or-no-p ; minibuffer display is better than y-or-n-p
-		"Use outdated manual?  (Reply no for download option.) "))))
+           (or (null url) ;; no download option
+               (null manual-index-pathname) ; no writes dates to compare
+               (file-newer-than-file-p pathname manual-index-pathname)
+               (yes-or-no-p ; minibuffer display is better than y-or-n-p
+                "Use outdated manual?  (Reply no for download option.) "))))
      ((and (file-exists-p pathname-gz)
-	   (y-or-n-p
-	    (format
-	     "Run gunzip on %s%s? "
-	     pathname-gz
-	     (if (file-newer-than-file-p pathname
-					 (manual-index-pathname))
-		 ""
-	       ", even though you can download a newer version"))))
+           (y-or-n-p
+            (format
+             "Run gunzip on %s%s? "
+             pathname-gz
+             (if (file-newer-than-file-p pathname
+                                         (manual-index-pathname))
+                 ""
+               ", even though you can download a newer version"))))
       (shell-command-to-string
        (format "gunzip %s"
-	       pathname-gz))
+               pathname-gz))
       (or (file-exists-p pathname)
-	  (error "Execution of gunzip seems to have failed!")))
+          (error "Execution of gunzip seems to have failed!")))
      ((and url
-	   (y-or-n-p
-	    (format "Download %s and install as %s? "
-		    url pathname)))
+           (y-or-n-p
+            (format "Download %s and install as %s? "
+                    url pathname)))
       (acl2-doc-download))
      ((or pathname-exists url)
       (error "Update of manual aborted"))
      (t (error
-	 "File %s not found, and\nno URL specified for the manual named %s"
-	 pathname *acl2-doc-manual-name*)))))
+         "File %s not found, and\nno URL specified for the manual named %s"
+         pathname *acl2-doc-manual-name*)))))
 
 (defun acl2-doc-reset (manual-name)
   (let ((old-name (acl2-doc-manual-name)))
@@ -533,16 +533,16 @@ then restart the ACL2-Doc browser to view that manual."
 
 (defun current-acl2-buffer ()
   (let ((buf nil)
-	(lst (buffer-list)))
+        (lst (buffer-list)))
 
 ;;; It is tempting to use (seq-find 'acl2-doc-buffer-p (buffer-list)), but
 ;;; seq-find is not defined in some older Emacs versions (e.g., 24.5.1).
 
     (while (and lst
-		(null buf))
+                (null buf))
       (if (acl2-doc-buffer-p (car lst))
-	  (setq buf (car lst))
-	(pop lst)))
+          (setq buf (car lst))
+        (pop lst)))
     buf))
 
 (defun switch-to-acl2-doc-buffer (&optional new-buffer-p)
@@ -553,8 +553,8 @@ then restart the ACL2-Doc browser to view that manual."
           (switch-to-buffer buf)))
     (let ((current-acl2-buffer (current-acl2-buffer)))
       (switch-to-buffer (if current-acl2-buffer
-			    current-acl2-buffer
-			  (generate-new-buffer-name *acl2-doc-buffer-name*)))))
+                            current-acl2-buffer
+                          (generate-new-buffer-name *acl2-doc-buffer-name*)))))
 
 ;;; The next two forms need only be evaluated when the buffer is first
 ;;; created, but it is likely harmless to go ahead and evaluate them
@@ -844,13 +844,13 @@ typing `:doc acl2-doc' in the ACL2 read-eval-print loop.
   (cond (clear
          (acl2-doc-reset nil)
          (acl2-doc-top))
-	(t
-	 (switch-to-acl2-doc-buffer)
-	 (cond (*acl2-doc-history*
-		(acl2-doc-display-basic (car *acl2-doc-history*)))
-	       (t
-		(acl2-doc-maybe-reset)
-		(acl2-doc-top))))))
+        (t
+         (switch-to-acl2-doc-buffer)
+         (cond (*acl2-doc-history*
+                (acl2-doc-display-basic (car *acl2-doc-history*)))
+               (t
+                (acl2-doc-maybe-reset)
+                (acl2-doc-top))))))
 
 (defun acl2-doc-last ()
   "Go to the last topic visited in the current buffer.  This
@@ -1678,8 +1678,7 @@ with, for example, meta-3 control-t /."
 
 ; Control-t t now transposes characters, instead of the former control-t.
   (define-key ctl-t-keymap "\C-T" 'transpose-chars)
-  (define-key ctl-t-keymap "\C-t" 'transpose-chars)
-  )
+  (define-key ctl-t-keymap "\C-t" 'transpose-chars))
 
 (define-key global-map "\C-tg" 'acl2-doc)
 (define-key global-map "\C-t." 'acl2-doc-go-from-anywhere)
