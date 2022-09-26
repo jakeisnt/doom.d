@@ -59,14 +59,13 @@ Also see send-region-to-lisp, send-defun-to-lisp, and send-sexp-to-lisp"
 ;;;  Set correct editor indentation for the functions listed.
 ;;;  Current indentation is returned by (get '<func> 'lisp-indent-hook).
 
-(mapcar #'(lambda (x)
-            (put x 'lisp-indent-hook 'defun))
-        '(all block case do do* do-filled-array
-           dolist dolist-numbered domap domap-numbered dotimes
-           ecase etypecase eval-when exists exporting-defstruct
-           labels let let* multiple-value-bind mvbind mvsetq
-           nd-rule prog1 return-from rule-bind term-bind typecase
-           unless unwind-protect when with-open-file))
+(dolist #'(lambda (x) (put x 'lisp-indent-hook 'defun))
+  '(all block case do do* do-filled-array
+     dolist dolist-numbered domap domap-numbered dotimes
+     ecase etypecase eval-when exists exporting-defstruct
+     labels let let* multiple-value-bind mvbind mvsetq
+     nd-rule prog1 return-from rule-bind term-bind typecase
+     unless unwind-protect when with-open-file))
 
 ;;; Cause editor to indent first 3 forms following an 'if.
 
@@ -184,7 +183,7 @@ one such error; if you suspect more errors, run it again."
     (goto-char saved-point)
     (message "All parentheses appear balanced.")))
 
-(global-set-key "\M-n" 'send-acl2-form)
+(global-set-key "C-n" 'send-acl2-form)
 (global-set-key "\C-xas" 'set-acl2-active-shell-buffer)
 (local-unset-key "\C-\M-q")
 (global-set-key "\C-\M-q" 'indent-untabify-sexp)
@@ -206,7 +205,7 @@ one such error; if you suspect more errors, run it again."
                  (if (equal (car x) 0) 'defun (car x))))
         keyword-rules))
 
-                                        ; Should improve to highlight anything starting with define or defun
+;; Should improve to highlight anything starting with define or defun
 (acl2s-add-keywords
  'font-lock-keyword-face
  '((0 . match)
