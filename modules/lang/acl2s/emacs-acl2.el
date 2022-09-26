@@ -17,6 +17,7 @@
 ; Department of Computer Science
 ; University of Texas at Austin
 ; Austin, TX 78712 U.S.A.
+; and modified by Jacob Chvatal.
 
 ; This file contains some emacs stuff for ACL2 users.  It is intended
 ; to work both with GNU Emacs and XEmacs.
@@ -1067,8 +1068,7 @@ of the current s-expression in the enclosing list"
 (defun acl2-info ()
   "Starts up info pointing at top of acl2 documentation"
   (interactive)
-  (info (concat (acl2-sources-dir) "doc/EMACS/acl2-doc-emacs.info"))
-  )
+  (info (concat (acl2-sources-dir) "doc/EMACS/acl2-doc-emacs.info")))
 
 ; From Bishop Brock:
 ;(defun date ()
@@ -1082,16 +1082,6 @@ of the current s-expression in the enclosing list"
 (global-set-key "\214" 'c-m-l)
 ; (load "rmail")
 ; (define-key rmail-mode-map "\214" 'c-m-l)
-
-; Turn on time/mail display on mode line.
-(load "time")
-(setq display-time-interval 10)
-(display-time) ; turn off as described just below:
-; Turn off display-time with:
-;   (display-time-mode) in emacs
-;   (display-time-stop) in xemacs
-; Needed for displaying day and date in addition to time:
-; (setq display-time-day-and-date t)
 
 ; Disable commands that we do not want to execute by mistake:
 (put 'shell-resync-dirs 'disabled t)
