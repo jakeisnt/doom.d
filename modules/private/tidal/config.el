@@ -501,9 +501,41 @@
   (turn-on-font-lock))
 
 ;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.tidal$" . tidal-mode))
+;;; this is from some other site:  https://gist.github.com/kindohm/9388957
+;; (add-to-list 'auto-mode-alist '("\\.tidal$" . tidal-mode))
 
-(setq tidal-interpreter "/usr/bin/env ghci")
+;; (setq tidal-interpreter "/usr/bin/env ghci")
+
+;; (add-to-list 'load-path "~/code/Tidal")
+;; (require 'tidal)
+
+;;  ;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
+;;  (set-frame-parameter (selected-frame) 'alpha '(65 40))
+;;  (add-to-list 'default-frame-alist '(alpha 65 40))
+
+;;  (eval-when-compile (require 'cl))
+;;  (defun toggle-transparency ()
+;;    (interactive)
+;;    (if (/=
+;;         (cadr (frame-parameter nil 'alpha))
+;;         100)
+;;        (set-frame-parameter nil 'alpha '(100 100))
+;;      (set-frame-parameter nil 'alpha '(65 40))))
+;;  (global-set-key (kbd "C-c t") 'toggle-transparency)
+;; (custom-set-variables
+
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(custom-enabled-themes (quote (manoj-dark)))
+;;  '(inhibit-startup-screen t))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
 
 (provide 'config)
 ;;; config.el ends here

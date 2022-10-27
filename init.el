@@ -171,8 +171,10 @@
  ;;terra             ; Earth and Moon in alignment for performance.
  web                                    ; the tubes
  yaml                                   ; JSON, but reada
- zig                                    ;; C but simpler!
+
+ zig ;; C but simpler!
  acl2s
+ lean4                                  ; I love lean,,,
 
  :email
  ;;(mu4e +gmail)
@@ -188,7 +190,7 @@
  :private
  editor
  internet
-modeline ;; memento-mori-mode broken
+ modeline ;; memento-mori-mode broken
  org
  tidal
  ;; urweb
