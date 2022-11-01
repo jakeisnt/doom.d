@@ -305,5 +305,9 @@
 
 (global-wakatime-mode)
 
+;; garbage collect when idling, but allow as many conses as we need. no freezing!
+(setq gc-cons-threshold most-positive-fixnum)
+(run-with-idle-timer 2 t (lambda () (garbage-collect)))
+
 (provide 'config)
 ;;; config.el ends here
