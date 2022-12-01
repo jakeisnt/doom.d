@@ -300,9 +300,6 @@
 ;; (advice-add #'evil-motion-range :around #'~/evil-motion-range--wrapper)
 
 (add-to-list 'auto-mode-alist '("\\.lalrpop\\'" . rustic-mode))
-
-(setq-default major-mode 'lisp-mode)
-
 (global-wakatime-mode)
 
 ;; garbage collect when idling, but allow as many conses as we need. no freezing!

@@ -11,9 +11,10 @@
       org-roam-dailies-directory "~/wiki/journals/"
       org-brain-path "~/wiki/pages/"
       org-journal-dir "~/wiki/journals/"
+      org-journal-file-format "%Y-%m-%d.org"
       org-use-property-inheritance t ;; convenient
-      org-log-done 'time ;; log the time you finish something
-      org-list-allow-alphabetical t ;; allow alpha bullets
+      org-log-done 'time             ;; log the time you finish something
+      org-list-allow-alphabetical t  ;; allow alpha bullets
       org-export-in-background t) ;; run export async
 ;; org-catch-invisible-edits 'smart ;; dont do weird invisible stuff
 ;; org-re-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
@@ -38,6 +39,7 @@
 ;           "TODO.org")
 ;     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
 ;     (push (org-projectile-project-todo-entry) org-capture-templates)))
+
 ; (setq org-log-done 'time
 ;       org-log-into-drawer t
 ;       org-log-state-notes-insert-after-drawers nil)
@@ -109,7 +111,7 @@
                                            ("color"      . "#C9C9C9")
                                            ("fontcolor"  . "#111111")
                                            ("fontname"   . "Overpass")))
-  ; (use-package! org-roam-protocol)
+  (use-package! org-roam-protocol)
   ; (use-package! org-roam-server
   ;   :after org-roam
   ;   :config
@@ -121,11 +123,11 @@
   ;         org-roam-server-label-truncate-length 60
   ;         org-roam-server-label-wrap-length 20))
 
-  ; (defun org-roam-server-open ()
-  ;   "Ensure the server is active, then open the roam graph."
-  ;   (interactive)
-  ;   (org-roam-server-mode 1)
-  ;   (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port)))
+  (defun org-roam-server-open ()
+    "Ensure the server is active, then open the roam graph."
+    (interactive)
+    (org-roam-server-mode 1)
+    (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port)))
 
 
   (setq org-roam-ref-capture-templates

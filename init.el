@@ -123,7 +123,7 @@
  ;;julia             ; a better, faster MATLAB
  ;; kotlin            ; a better, slicker Java(Script)
  latex                ; writing papers in Emacs has never been so fun
- ;;lean
+ lean
  ;;factor
  ;;ledger            ; an accounting system in Emacs
  ;;lua               ; one-based indices? one-based indices
@@ -140,6 +140,7 @@
   +present
   +roam2
   +noter
+  +journal
   ;; +present
   ;; +tanglesync
   ;; +chef
