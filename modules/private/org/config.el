@@ -272,5 +272,14 @@
   (deft-default-extension "org")
   (deft-directory "~/wiki/"))
 
+                                        ;(use-package! org-fragtog
+                                        ;  :init (add-hook! org-mode org-fragtog-mode))
+
+
+
+                                        ;(after! org
+                                        ;  (plist-put org-format-latex-options :scale 0.5))
+
+
 (provide 'config)
 ;;; config.el ends here

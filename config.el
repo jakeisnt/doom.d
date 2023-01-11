@@ -17,10 +17,6 @@
 
 (require 'evil)
 
-;; don't attempt to run commands in nushell
-(setq-default shell-file-name "/run/current-system/sw/bin/bash")
-(setq-default explicit-shell-file-name "/run/current-system/sw/bin/bash")
-
 ;;; Code:
 (setq user-full-name "Jacob Chvatal"
       user-mail-address "jakechvatal@gmail.com"
@@ -32,9 +28,13 @@
               window-combination-resize t
               x-stretch-cursor t
               history-length 1000
-              prescient-history-length 100)
+              prescient-history-length 100
+              ;; commands from emacs should always be run in bash
+              shell-file-name "/run/current-system/sw/bin/bash"
+              explicit-shell-file-name "/run/current-system/sw/bin/bash")
 
 (setq undo-limit 80000000
+      gc-cons-threshold most-positive-fixnum
       evil-want-fine-undo t
       auth-source-cache-expiry nil
       inhibit-compacting-font-caches t
@@ -43,12 +43,13 @@
       read-process-output-max (* 1024 1024)
       ;; lsp-completion-provider :capf
       lsp-idle-delay 0.500
-
       ;; lsp-ui conflicts with eldoc; disable it
       lsp-ui-sideline-enable nil
       lsp-enable-symbol-highlighting nil
-
       evil-ex-substitute-global t)
+
+;; garbage collect when idling, but allow as many conses as we need. no freezing!
+(run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
 (setq doom-font (font-spec :family "monospace" :size 14 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family "sans" :size 14))
@@ -61,7 +62,6 @@
       evil-split-window-below t)
 
 (delete-selection-mode 1)
-
 
 (map!
  :leader
@@ -285,28 +285,8 @@
 (use-package! epg
   :init (setq epg-pinentry-mode 'loopback))
 
-;(use-package! org-fragtog
-;  :init (add-hook! org-mode org-fragtog-mode))
-
-
-
-;(after! org
-;  (plist-put org-format-latex-options :scale 0.5))
-
-;;Fixes lag when editing idris code with evil
-;; (defun ~/evil-motion-range--wrapper (fn &rest args)
-;;   "Like `evil-motion-range', but override field-beginning for performance.
-;; See URL `https://github.com/ProofGeneral/PG/issues/427'."
-;;   (cl-letf (((symbol-function 'field-beginning)
-;;              (lambda (&rest args) 1)))
-;;     (apply fn args)))
-
 ;; (advice-add #'evil-motion-range :around #'~/evil-motion-range--wrapper)
 (global-wakatime-mode)
-
-;; garbage collect when idling, but allow as many conses as we need. no freezing!
-(setq gc-cons-threshold most-positive-fixnum)
-(run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
 (provide 'config)
 ;;; config.el ends here

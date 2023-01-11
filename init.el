@@ -122,7 +122,7 @@
  (javascript +lsp)
  ;;julia             ; a better, faster MATLAB
  ;; kotlin            ; a better, slicker Java(Script)
- latex                ; writing papers in Emacs has never been so fun
+ latex                           ; writing papers in Emacs has never been so fun
  lean
  ;;factor
  ;;ledger            ; an accounting system in Emacs
@@ -173,7 +173,7 @@
  web                                    ; the tubes
  yaml                                   ; JSON, but reada
 
- zig ;; C but simpler!
+ zig   ;; C but simpler!
  ;; acl2s
  lean4                                  ; I love lean,,,
 
@@ -194,6 +194,7 @@
  modeline ;; memento-mori-mode broken
  org
  tidal
+ copilot
  ;; urweb
 
  :config
