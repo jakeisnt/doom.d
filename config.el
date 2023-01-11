@@ -17,6 +17,10 @@
 
 (require 'evil)
 
+;; don't attempt to run commands in nushell
+(setq-default shell-file-name "/run/current-system/sw/bin/bash")
+(setq-default explicit-shell-file-name "/run/current-system/sw/bin/bash")
+
 ;;; Code:
 (setq user-full-name "Jacob Chvatal"
       user-mail-address "jakechvatal@gmail.com"
@@ -298,8 +302,6 @@
 ;;     (apply fn args)))
 
 ;; (advice-add #'evil-motion-range :around #'~/evil-motion-range--wrapper)
-
-(add-to-list 'auto-mode-alist '("\\.lalrpop\\'" . rustic-mode))
 (global-wakatime-mode)
 
 ;; garbage collect when idling, but allow as many conses as we need. no freezing!

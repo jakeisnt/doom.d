@@ -174,7 +174,7 @@
  yaml                                   ; JSON, but reada
 
  zig ;; C but simpler!
- acl2s
+ ;; acl2s
  lean4                                  ; I love lean,,,
 
  :email
