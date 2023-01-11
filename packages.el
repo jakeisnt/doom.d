@@ -75,7 +75,6 @@
 (package! idris2-mode
  :recipe (:host github :repo "idris-community/idris2-mode"))
 
-
 ; for networks: using vagrant interface from emacs
 (package! vagrant-tramp)
 (package! vagrant)

@@ -19,7 +19,6 @@
  doom-dashboard
  hl-todo
 
-
  ;;indent-guides
  (modeline +light)
 
@@ -190,7 +189,7 @@
 
  :private
  editor
- internet
+ ;;internet
  modeline ;; memento-mori-mode broken
  org
  tidal
