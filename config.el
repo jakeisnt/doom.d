@@ -17,10 +17,23 @@
 
 (require 'evil)
 
+;; make sure that emacs receives this
+;; there must be a better way to do this?
+(setenv "GNUPGHOME" "~/.config/gnupg")
+
+;; run commands from emacs in a bash shell
+(setq
+ shell-file-name "/run/current-system/sw/bin/bash"
+ explicit-shell-file-name  "/run/current-system/sw/bin/bash")
+
+(setq-default
+ shell-file-name "/run/current-system/sw/bin/bash"
+ explicit-shell-file-name  "/run/current-system/sw/bin/bash")
+
 ;;; Code:
 (setq user-full-name "Jacob Chvatal"
       user-mail-address "jakechvatal@gmail.com"
-      doom-theme 'doom-stilla)
+      doom-theme 'doom-city-lights)
 
 (setq-default delete-by-moving-to-trash t
               tab-width 4
@@ -28,10 +41,7 @@
               window-combination-resize t
               x-stretch-cursor t
               history-length 1000
-              prescient-history-length 100
-              ;; commands from emacs should always be run in bash
-              shell-file-name "/run/current-system/sw/bin/bash"
-              explicit-shell-file-name "/run/current-system/sw/bin/bash")
+              prescient-history-length 100)
 
 (setq undo-limit 80000000
       gc-cons-threshold most-positive-fixnum
