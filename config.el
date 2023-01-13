@@ -22,6 +22,7 @@
 (setenv "GNUPGHOME" "~/.config/gnupg")
 
 ;; run commands from emacs in a bash shell
+;; TODO: What path gives us bash with the environment variables?
 (setq
  shell-file-name "/run/current-system/sw/bin/bash"
  explicit-shell-file-name  "/run/current-system/sw/bin/bash")
