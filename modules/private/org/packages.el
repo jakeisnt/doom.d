@@ -24,6 +24,8 @@
 (package! org-roam-server)
 (package! company-org-roam)
 (package! org-super-agenda)
+(package! org-fragtog)
+(use-package! org-pandoc-import :after org)
 
 (provide 'packages)
 ;;; packages.el ends here

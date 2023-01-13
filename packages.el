@@ -79,14 +79,9 @@
 (package! vagrant-tramp)
 (package! vagrant)
 
-;; org-mode
-(package! org-fragtog)
-
-                                        ; reason/rescript
+;; reason/rescript
 (package! reason-mode)
-
 (package! code-review :disable t)
-
 (package! pdf-tools :built-in 'prefer)
 
 (provide 'packages)

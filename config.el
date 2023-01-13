@@ -276,8 +276,6 @@
                                         ;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
 (require 'tree-sitter)
-(use-package! org-pandoc-import :after org)
-
 ;; lots of language sensitive manipulation tools!
 (use-package! symex
   :config
