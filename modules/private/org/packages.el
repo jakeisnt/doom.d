@@ -25,7 +25,11 @@
 (package! company-org-roam)
 (package! org-super-agenda)
 (package! org-fragtog)
-(use-package! org-pandoc-import :after org)
+(package! org-pandoc-import
+  :recipe (:host github
+           :repo "tecosaur/org-pandoc-import"
+           :files ("*.el" "filters" "preprocessors")))
+
 
 (provide 'packages)
 ;;; packages.el ends here

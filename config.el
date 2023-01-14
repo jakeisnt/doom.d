@@ -249,15 +249,6 @@
              (browse-url (read-string "URL:"))))
 (map! :leader
       "'" (lambda () (interactive) (counsel-search)))
-(map!
- :leader
- :prefix "v"
- :desc "Visit Calendar" "c" (lambda () (interactive) (browse-url "https://calendar.google.com"))
- :desc "Visit Discord" "d" (lambda () (interactive) (browse-url "https://discord.gg"))
- :desc "Visit Spotify" "s" (lambda () (interactive) (browse-url "https://open.spotify.com"))
- :desc "Visit Gmail" "m" (lambda () (interactive) (browse-url "https://gmail.com"))
- :desc "Visit GitHub" "g" (lambda () (interactive) (browse-url "https://github.com/jakeisnt"))
- :desc "Visit local port" "l" 'visit-localhost)
 
 ;; Insert the contents of all of the files in a directory into a single file
 (defun insert-directory ()

@@ -51,11 +51,6 @@
 ;(unpin! t)
 
 ;;;; Code:
-(package! org-pandoc-import
-  :recipe (:host github
-           :repo "tecosaur/org-pandoc-import"
-           :files ("*.el" "filters" "preprocessors")))
-
 ;; (package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")))
 ;; (package! elpher :pin "cc19cc4d1c174ed568625d2f34cf25914184d1f2") : gopher and gemini client for emacs
 (package! atomic-chrome)
@@ -64,7 +59,6 @@
 (package! wakatime-mode)
 (package! tree-sitter)
 (package! symex)
-;; (package! pinentry)
 ;(package! gitconfig-mode
  ; :recipe (:host github :repo "magit/git-modes"
   ;         :files ("gitconfig-mode.el")))
@@ -72,16 +66,6 @@
  ; :recipe (:host github :repo "magit/git-modes"
   ;         :files ("gitignore-mode.el")))
 
-(package! idris2-mode
- :recipe (:host github :repo "idris-community/idris2-mode"))
-
-; for networks: using vagrant interface from emacs
-(package! vagrant-tramp)
-(package! vagrant)
-
-;; reason/rescript
-(package! reason-mode)
-(package! code-review :disable t)
 (package! pdf-tools :built-in 'prefer)
 
 (provide 'packages)
