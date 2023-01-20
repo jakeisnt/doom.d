@@ -68,6 +68,7 @@
 
  :tools
  editorconfig
+ tree-sitter
  ;;ansible
  ;;debugger
  direnv
