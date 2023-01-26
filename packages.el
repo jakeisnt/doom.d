@@ -68,6 +68,11 @@
 
 (package! pdf-tools :built-in 'prefer)
 
+;; TODO: This overrides the default 'magit' mode - which is not ideal.
+;; Figure out where this is going wrong in the future.
+;; (add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
+;; (package! magit-delta)
+
 (provide 'packages)
 
 ;;; packages.el ends here

@@ -12,7 +12,6 @@
 ;;
 ;; This file is not part of GNU Emacs.
 ;;; Commentary:
-;; This is commentary suggested by error messages.
 ;;; Code:
 
 (require 'evil)
@@ -34,7 +33,9 @@
 ;;; Code:
 (setq user-full-name "Jacob Chvatal"
       user-mail-address "jakechvatal@gmail.com"
-      doom-theme 'doom-city-lights)
+      doom-theme 'doom-city-lights
+      doom-font (font-spec :family "monospace" :size 14 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 14))
 
 (setq-default delete-by-moving-to-trash t
               tab-width 4
@@ -62,17 +63,18 @@
 ;; garbage collect when idling, but allow as many conses as we need. no freezing!
 (run-with-idle-timer 2 t (lambda () (garbage-collect)))
 
-(setq doom-font (font-spec :family "monospace" :size 14 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 14))
+(setq projectile-globally-ignored-directories
+      '("node_modules" ".happypack" "flow-typed" "build" "lib")
+      grep-find-ignored-directories
+      '("node_modules" ".happypack"))
 
-(setq projectile-globally-ignored-directories '("node_modules" ".happypack" "flow-typed" "build" "lib")
-      grep-find-ignored-directories '("node_modules" ".happypack"))
+(delete-selection-mode 1)
 
+
+;; --- Window management
 ;; always split window to bottom right
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
-
-(delete-selection-mode 1)
 
 (map!
  :leader
@@ -126,43 +128,16 @@
       "h r n" (lambda () (interactive)
                 (async-shell-command "hey rebuild")))
 
-(add-hook 'TeX-after-compilation-finished-functions
-          #'TeX-revert-document-buffer)
-
-;; to use pdfview with auctex
-;; (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
-;;    TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
-;;    TeX-source-correlate-start-server t) ;; not sure if last line is neccessary
-;; to have the buffer refresh after compilation
-
-;;; automatic #bang
+;;; automatically chmod shell scripts
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
-(defun make-script-executable ()
-  "If file starts with a shebang, make `buffer-file-name' executable
-
-       Since it doesn't rely on ##chmod##, it also works for remote
-       files, i.e. those accessed by TrampMode.
-
-       taken from:
-       http://www.emacswiki.org/emacs-en/MakingScriptsExecutableOnSave"
-  (interactive)
-  (save-excursion
-    (save-restriction
-      (widen)
-      (goto-char (point-min))
-      (when (and (looking-at "^#!")
-                 (not (file-executable-p buffer-file-name)))
-        (set-file-modes buffer-file-name
-                        (logior (file-modes buffer-file-name) #o100))
-        (message (concat "Made " buffer-file-name " executable"))))))
-
-
 (defun doom-dashboard-widget-banner ()
+  "Render a NixOS desktop widget banner."
   (mapc (lambda (line)
-          (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
-                              'face 'doom-dashboard-banner) " ")
+          (insert (propertize
+                   (+doom-dashboard--center +doom-dashboard--width line)
+                   'face 'doom-dashboard-banner) " ")
           (insert "\n"))
         '("
                               ::::.    ':::::     ::::'
@@ -188,22 +163,6 @@
                                     E M A C S
 
 ")))
-
-;; (use-package! ranger
-;;   :init
-;;   (ranger-override-dired-mode t)
-;;   :config
-;;   (setq
-;;    ranger-cleanup-on-disable t
-;;    ranger-modify-header t
-;;    ranger-hide-cursor t
-;;    ranger-preview-file t
-;;    ranger-max-preview-size 20
-;;    ranger-dont-show-binary t))
-
-(defun ido-kill-emacs-hook ()
-  ;; Quit emacs despite the ido.last buffer being written to.
-  (ignore-errors (ido-save-history)))
 
 (use-package! atomic-chrome
   :after-call after-focus-change-function
@@ -236,139 +195,27 @@
 
 (define-key evil-normal-state-map (kbd "SPC a") 'link-hint-open-link)
 
-;; TODO: Visit the localhost port shared by the current project or the page that has it open.
-
 ;; Find a URL
+;; TODO: Visit the localhost port shared by the current project or the page that has it open.
 (map! :leader
       "\"" (lambda ()
              (interactive)
-             (browse-url (read-string "URL:"))))
-(map! :leader
+             (browse-url (read-string "URL:")))
       "'" (lambda () (interactive) (counsel-search)))
 
-
-;; Language-sensitive manipulation tools!
 (use-package! symex
   :config
   (symex-initialize)
   (global-set-key (kbd "s-;") 'symex-mode-interface)
   :custom
-  (symex-modal-backend 'evil))
-
-
-(global-set-key (kbd "C-(") 'sp-backward-barf-sexp)
-(global-set-key (kbd "C-)") 'sp-forward-barf-sexp)
-(global-set-key (kbd "C-9") 'sp-backward-slurp-sexp)
-(global-set-key (kbd "C-0") 'sp-forward-slurp-sexp)
+  (symex-modal-backend 'evil)
+  (global-set-key (kbd "C-(") 'sp-backward-barf-sexp)
+  (global-set-key (kbd "C-)") 'sp-forward-barf-sexp)
+  (global-set-key (kbd "C-9") 'sp-backward-slurp-sexp)
+  (global-set-key (kbd "C-0") 'sp-forward-slurp-sexp))
 
 (use-package! epg
   :init (setq epg-pinentry-mode 'loopback))
-
-;; difftastic
-;; https://tsdh.org/posts/2022-08-01-difftastic-diffing-with-magit.html
-(defun th/magit--with-difftastic (buffer command)
-  "Run COMMAND with GIT_EXTERNAL_DIFF=difft then show result in BUFFER."
-  (let ((process-environment
-         (cons (concat "GIT_EXTERNAL_DIFF=difft --width="
-                       (number-to-string (frame-width)))
-               process-environment)))
-    ;; Clear the result buffer (we might regenerate a diff, e.g., for
-    ;; the current changes in our working directory).
-    (with-current-buffer buffer
-      (setq buffer-read-only nil)
-      (erase-buffer))
-    ;; Now spawn a process calling the git COMMAND.
-    (make-process
-     :name (buffer-name buffer)
-     :buffer buffer
-     :command command
-     ;; Don't query for running processes when emacs is quit.
-     :noquery t
-     ;; Show the result buffer once the process has finished.
-     :sentinel (lambda (proc event)
-                 (when (eq (process-status proc) 'exit)
-                   (with-current-buffer (process-buffer proc)
-                     (goto-char (point-min))
-                     (ansi-color-apply-on-region (point-min) (point-max))
-                     (setq buffer-read-only t)
-                     (view-mode)
-                     (end-of-line)
-                     ;; difftastic diffs are usually 2-column side-by-side,
-                     ;; so ensure our window is wide enough.
-                     (let ((width (current-column)))
-                       (while (zerop (forward-line 1))
-                         (end-of-line)
-                         (setq width (max (current-column) width)))
-                       ;; Add column size of fringes
-                       (setq width (+ width
-                                      (fringe-columns 'left)
-                                      (fringe-columns 'right)))
-                       (goto-char (point-min))
-                       (pop-to-buffer
-                        (current-buffer)
-                        `(;; If the buffer is that wide that splitting the frame in
-                          ;; two side-by-side windows would result in less than
-                          ;; 80 columns left, ensure it's shown at the bottom.
-                          ,(when (> 80 (- (frame-width) width))
-                             #'display-buffer-at-bottom)
-                          (window-width
-                           . ,(min width (frame-width))))))))))))
-
-(defun th/magit-show-with-difftastic (rev)
-  "Show the result of \"git show REV\" with GIT_EXTERNAL_DIFF=difft."
-  (interactive
-   (list (or
-          ;; If REV is given, just use it.
-          (when (boundp 'rev) rev)
-          ;; If not invoked with prefix arg, try to guess the REV from
-          ;; point's position.
-          (and (not current-prefix-arg)
-               (or (magit-thing-at-point 'git-revision t)
-                   (magit-branch-or-commit-at-point)))
-          ;; Otherwise, query the user.
-          (magit-read-branch-or-commit "Revision"))))
-  (if (not rev)
-      (error "No revision specified")
-    (th/magit--with-difftastic
-     (get-buffer-create (concat "*git show difftastic " rev "*"))
-     (list "git" "--no-pager" "show" "--ext-diff" rev))))
-
-(defun th/magit-diff-with-difftastic (arg)
-  "Show the result of \"git diff ARG\" with GIT_EXTERNAL_DIFF=difft."
-  (interactive
-   (list (or
-          ;; If RANGE is given, just use it.
-          (when (boundp 'range) range)
-          ;; If prefix arg is given, query the user.
-          (and current-prefix-arg
-               (magit-diff-read-range-or-commit "Range"))
-          ;; Otherwise, auto-guess based on position of point, e.g., based on
-          ;; if we are in the Staged or Unstaged section.
-          (pcase (magit-diff--dwim)
-            ('unmerged (error "unmerged is not yet implemented"))
-            ('unstaged nil)
-            ('staged "--cached")
-            (`(stash . ,value) (error "stash is not yet implemented"))
-            (`(commit . ,value) (format "%s^..%s" value value))
-            ((and range (pred stringp)) range)
-            (_ (magit-diff-read-range-or-commit "Range/Commit"))))))
-  (let ((name (concat "*git diff difftastic"
-                      (if arg (concat " " arg) "")
-                      "*")))
-    (th/magit--with-difftastic
-     (get-buffer-create name)
-     `("git" "--no-pager" "diff" "--ext-diff" ,@(when arg (list arg))))))
-
-(transient-define-prefix th/magit-aux-commands ()
-  "My personal auxiliary magit commands."
-  ["Auxiliary commands"
-   ("d" "Difftastic Diff (dwim)" th/magit-diff-with-difftastic)
-   ("s" "Difftastic Show" th/magit-show-with-difftastic)])
-
-(transient-append-suffix 'magit-dispatch "!"
-  '("#" "My Magit Cmds" th/magit-aux-commands))
-
-(define-key magit-status-mode-map (kbd "#") #'th/magit-aux-commands)
 
 ;; (advice-add #'evil-motion-range :around #'~/evil-motion-range--wrapper)
 (global-wakatime-mode)
