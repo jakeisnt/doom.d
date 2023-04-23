@@ -11,7 +11,7 @@
       org-roam-dailies-directory "~/wiki/journals/"
       org-brain-path "~/wiki/pages/"
       org-journal-dir "~/wiki/journals/"
-      org-journal-file-format "%Y-%m-%d.org"
+      org-journal-file-format "%Y-%m-%d.md"
       org-use-property-inheritance t ;; convenient
       org-log-done 'time             ;; log the time you finish something
       org-list-allow-alphabetical t  ;; allow alpha bullets
@@ -45,7 +45,6 @@
 ;       org-log-state-notes-insert-after-drawers nil)
 
 (use-package! org
-  :mode ("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode)
   :init
   (map! :map org-mode-map
         "M-n" #'outline-next-visible-heading
@@ -78,25 +77,25 @@
 (setq org-modules '(org-protocol))
 
 
-(setq org-capture-templates `(
-                              ("i" "inbox" entry (file ,(concat j/org-agenda-directory "inbox.org"))
-                               "* TODO %?")
-                              ("m" "media" entry (file+headline ,(concat j/org-agenda-directory "media.org") "Media")
-                               "* TODO [#A] Reply: %a :@home:@school:" :immediate-finish t)
-                              ("p" "Protocol" entry (file+headline ,(concat org-directory "inbox.org") "Inbox")
-                               "* TODO %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-                              ("L" "Protocol Link" entry (file+headline ,(concat org-directory "inbox.org") "Inbox")
-                               "* TODO %? [[%:link][%:description]] \nCaptured On: %U")
-                              ("l" "link" entry (file ,(concat j/org-agenda-directory "inbox.org"))
-                               "* TODO %(org-cliplink-capture)" :immediate-finish t)
-                              ("c" "org-protocol-capture" entry (file ,(concat j/org-agenda-directory "inbox.org"))
-                               "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t)
-                              ("r" "recipe" entry (file "~/org/recipes.org")
-                               "%(org-chef-get-recipe-from-url)"
-                               :empty-lines 1)
-                              ;; ("m" "manual recipe" entry (file "~/org/recipes.org")
-                              ;;  "* %^{Recipe title: }\n  :PROPERTIES:\n  :source-url:\n  :servings:\n  :prep-time:\n  :cook-time:\n  :ready-in:\n  :END:\n** Ingredients\n   %?\n** Directions\n\n")
-                              ))
+(setq org-capture-templates
+      `(("i" "inbox" entry (file ,(concat j/org-agenda-directory "inbox.org"))
+         "* TODO %?")
+        ("m" "media" entry (file+headline ,(concat j/org-agenda-directory "media.org") "Media")
+         "* TODO [#A] Reply: %a :@home:@school:" :immediate-finish t)
+        ("p" "Protocol" entry (file+headline ,(concat org-directory "inbox.org") "Inbox")
+         "* TODO %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+        ("L" "Protocol Link" entry (file+headline ,(concat org-directory "inbox.org") "Inbox")
+         "* TODO %? [[%:link][%:description]] \nCaptured On: %U")
+        ("l" "link" entry (file ,(concat j/org-agenda-directory "inbox.org"))
+         "* TODO %(org-cliplink-capture)" :immediate-finish t)
+        ("c" "org-protocol-capture" entry (file ,(concat j/org-agenda-directory "inbox.org"))
+         "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t)
+        ("r" "recipe" entry (file "~/org/recipes.org")
+         "%(org-chef-get-recipe-from-url)"
+         :empty-lines 1)
+        ;; ("m" "manual recipe" entry (file "~/org/recipes.org")
+        ;;  "* %^{Recipe title: }\n  :PROPERTIES:\n  :source-url:\n  :servings:\n  :prep-time:\n  :cook-time:\n  :ready-in:\n  :END:\n** Ingredients\n   %?\n** Directions\n\n")
+        ))
 
 
 (setq org-todo-keywords

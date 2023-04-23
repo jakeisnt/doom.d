@@ -56,6 +56,8 @@
 (package! atomic-chrome)
 (package! nix-mode :pin "0023fc5b100ec0c939ffe699d1a7d1afcf1f417a")
 ;(package! proof-general :recipe (:host github :repo "jakeisnt/PG"))
+
+(package! md-roam :recipe (:host github :repo "nobiot/md-roam"))
 (package! wakatime-mode)
 (package! tree-sitter)
 (package! symex)
@@ -67,6 +69,7 @@
   ;         :files ("gitignore-mode.el")))
 
 (package! pdf-tools :built-in 'prefer)
+(package! vlf)
 
 ;; TODO: This overrides the default 'magit' mode - which is not ideal.
 ;; Figure out where this is going wrong in the future.

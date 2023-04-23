@@ -214,11 +214,31 @@
   (global-set-key (kbd "C-9") 'sp-backward-slurp-sexp)
   (global-set-key (kbd "C-0") 'sp-forward-slurp-sexp))
 
+;; md-roam
+
+;(use-package! md-roam
+;  :after org-roam
+;  :config
+;  (setq org-roam-file-extensions '("org" "md"))
+;  (md-roam-mode 1)
+;  (setq md-roam-file-extension "md")
+;  (org-roam-db-autosync-mode 1))
+
 (use-package! epg
   :init (setq epg-pinentry-mode 'loopback))
+
+
+(use-package! vlf
+  :config
+  (require 'vlf-setup))
 
 ;; (advice-add #'evil-motion-range :around #'~/evil-motion-range--wrapper)
 (global-wakatime-mode)
 
+;; TODO: Figure out what's wrong and fix upstream
+(setq envrc-direnv-executable "direnv")
+
+(setq projectile-git-command "git ls-files -zco --exclude-standard")
+
 (provide 'config)
-;;; config.el ends here
+;;; config.el ends her
