@@ -234,6 +234,7 @@
 
 ;; (advice-add #'evil-motion-range :around #'~/evil-motion-range--wrapper)
 (global-wakatime-mode)
+(global-activity-watch-mode)
 
 ;; TODO: Figure out what's wrong and fix upstream
 (setq envrc-direnv-executable "direnv")
@@ -241,4 +242,5 @@
 (setq projectile-git-command "git ls-files -zco --exclude-standard")
 
 (provide 'config)
-;;; config.el ends her
+
+;;; config.el ends here
