@@ -72,6 +72,7 @@
   ;         :files ("gitignore-mode.el")))
 
 (package! pdf-tools :built-in 'prefer)
+(package! graphviz-dot-mode)
 
 (package! vlf)
 
