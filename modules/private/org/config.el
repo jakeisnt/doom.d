@@ -1,4 +1,3 @@
-
 (require 'find-lisp)
 
 (setq org-directory "~/wiki/"

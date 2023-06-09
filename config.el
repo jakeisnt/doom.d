@@ -1,4 +1,5 @@
 ;;; config.el --- Custom functions for Doom -*- lexical-binding: t; -*-
+;;; Commentary: hey
 ;;;
 ;;
 ;; Copyright (C) 2019-2021 Jacob Chvatal
@@ -11,7 +12,7 @@
 ;; Package-Requires: ((emacs "24.1"))
 ;;
 ;; This file is not part of GNU Emacs.
-;;; Commentary:
+;;; Commentary: hey
 ;;; Code:
 
 (require 'evil)
@@ -22,20 +23,31 @@
 
 ;; run commands from emacs in a bash shell
 ;; TODO: What path gives us bash with the environment variables?
-(setq
- shell-file-name "/run/current-system/sw/bin/bash"
- explicit-shell-file-name  "/run/current-system/sw/bin/bash")
 
-(setq-default
- shell-file-name "/run/current-system/sw/bin/bash"
- explicit-shell-file-name  "/run/current-system/sw/bin/bash")
+
+(if (eq system-type 'darwin)
+  nil
+  (progn
+   (setq
+    shell-file-name "/run/current-system/sw/bin/bash"
+    explicit-shell-file-name  "/run/current-system/sw/bin/bash"))
+  (setq-default
+   shell-file-name "/run/current-system/sw/bin/bash"
+   explicit-shell-file-name  "/run/current-system/sw/bin/bash"))
+
 
 ;;; Code:
 (setq user-full-name "Jacob Chvatal"
       user-mail-address "jakechvatal@gmail.com"
       doom-theme 'doom-city-lights
-      doom-font (font-spec :family "monospace" :size 14 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 14))
+      doom-font
+      (if (eq system-type 'darwin)
+          (font-spec :family "Berkeley Mono" :size 12 :weight 'semi-light)
+        (font-spec :family "monospace" :size 12 :weight 'semi-light))
+      doom-variable-pitch-font
+      (if (eq system-type 'darwin)
+          (font-spec :family "Gill Sans" :size 12)
+          (font-spec :family "sans" :size 12)))
 
 (setq-default delete-by-moving-to-trash t
               tab-width 4
@@ -216,13 +228,13 @@
 
 ;; md-roam
 
-;(use-package! md-roam
-;  :after org-roam
-;  :config
-;  (setq org-roam-file-extensions '("org" "md"))
-;  (md-roam-mode 1)
-;  (setq md-roam-file-extension "md")
-;  (org-roam-db-autosync-mode 1))
+                                        ;(use-package! md-roam
+                                        ;  :after org-roam
+                                        ;  :config
+                                        ;  (setq org-roam-file-extensions '("org" "md"))
+                                        ;  (md-roam-mode 1)
+                                        ;  (setq md-roam-file-extension "md")
+                                        ;  (org-roam-db-autosync-mode 1))
 
 (use-package! epg
   :init (setq epg-pinentry-mode 'loopback))
