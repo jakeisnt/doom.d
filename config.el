@@ -228,13 +228,13 @@
 
 ;; md-roam
 
-                                        ;(use-package! md-roam
-                                        ;  :after org-roam
-                                        ;  :config
-                                        ;  (setq org-roam-file-extensions '("org" "md"))
-                                        ;  (md-roam-mode 1)
-                                        ;  (setq md-roam-file-extension "md")
-                                        ;  (org-roam-db-autosync-mode 1))
+;; (use-package! md-roam
+;; :after org-roam
+;; :config
+;; (setq org-roam-file-extensions '("org" "md"))
+;; (md-roam-mode 1)
+;; (setq md-roam-file-extension "md")
+;; (org-roam-db-autosync-mode 1))
 
 (use-package! epg
   :init (setq epg-pinentry-mode 'loopback))
@@ -251,6 +251,7 @@
 ;; TODO: Figure out what's wrong and fix upstream
 (setq envrc-direnv-executable "direnv")
 
+;; don't show the ignored git files in projectile
 (setq projectile-git-command "git ls-files -zco --exclude-standard")
 
 (provide 'config)
