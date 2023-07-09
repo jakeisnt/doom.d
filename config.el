@@ -237,7 +237,7 @@
 ;; (org-roam-db-autosync-mode 1))
 
 (use-package! epg
-  :init (setq epg-pinentry-mode 'loopback))
+  :init (defvar epg-pinentry-mode 'loopback))
 
 
 (use-package! vlf
@@ -245,11 +245,17 @@
   (require 'vlf-setup))
 
 ;; (advice-add #'evil-motion-range :around #'~/evil-motion-range--wrapper)
-(global-wakatime-mode)
-(global-activity-watch-mode)
 
-;; TODO: Figure out what's wrong and fix upstream
-(setq envrc-direnv-executable "direnv")
+
+(use-package! wakatime-mode
+  :functions global-wakatime-mode
+  :init (global-wakatime-mode))
+
+(use-package! activity-watch-mode
+  :functions global-activity-watch-mode
+  :config (global-activity-watch-mode))
+
+
 
 ;; don't show the ignored git files in projectile
 (setq projectile-git-command "git ls-files -zco --exclude-standard")
